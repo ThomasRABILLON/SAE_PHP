@@ -10,6 +10,9 @@ Autoloader::register();
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
 switch ($uri) {
+    case '/':
+        home();
+        break;
     case '/home':
         home();
         break;
