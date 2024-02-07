@@ -1,0 +1,11 @@
+A_GENRE, 1N ALBUMS, 0N GENRE
+GENRE: id_genre, libelle
+:
+
+ALBUMS: id_album [NUMBER], title, release_date [DATE], img [BLOB]
+PLAYLIST, 0N UTILISATEURS, 0N ALBUMS
+UTILISATEURS: id_user, nom, prenom, date_naissance, mdp
+
+FAIT_PAR, 11 ALBUMS, 0N ARTISTES
+ARTISTES: id_art, nom_de_scene, nom, prenom
+SUIT, 0N ARTISTES, 0N UTILISATEURS

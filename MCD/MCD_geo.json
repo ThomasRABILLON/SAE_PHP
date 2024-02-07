@@ -1,0 +1,35 @@
+{
+  "width": 355,
+  "height": 339,
+  "cx": [
+    [ "A_GENRE", 54 ],
+    [ "GENRE", 174 ],
+    [ "ALBUMS", 54 ],
+    [ "PLAYLIST", 174 ],
+    [ "UTILISATEURS", 294 ],
+    [ "FAIT_PAR", 54 ],
+    [ "ARTISTES", 174 ],
+    [ "SUIT", 294 ]
+  ],
+  "cy": [
+    [ "A_GENRE", 43 ],
+    [ "GENRE", 43 ],
+    [ "ALBUMS", 144 ],
+    [ "PLAYLIST", 144 ],
+    [ "UTILISATEURS", 144 ],
+    [ "FAIT_PAR", 279 ],
+    [ "ARTISTES", 279 ],
+    [ "SUIT", 279 ]
+  ],
+  "shift": [
+    [ "A_GENRE,ALBUMS,0", 0 ],
+    [ "A_GENRE,GENRE,0", 0 ],
+    [ "PLAYLIST,UTILISATEURS,0", 0 ],
+    [ "PLAYLIST,ALBUMS,0", 0 ],
+    [ "FAIT_PAR,ALBUMS,0", 0 ],
+    [ "FAIT_PAR,ARTISTES,0", 0 ],
+    [ "SUIT,ARTISTES,0", 0 ],
+    [ "SUIT,UTILISATEURS,0", 0 ]
+  ],
+  "ratio": []
+}
