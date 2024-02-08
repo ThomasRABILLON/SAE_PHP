@@ -1,42 +1,40 @@
 <?php
 
-namespace App\Models\Albums;
+namespace App\Models\Classe;
 
 class Album implements IRender{
     
-        private $entryId;
-        private $by;
+        private $id_album;
         private $title;
-        private $releaseYear;
-        private $genre;
-        private $parent;
+        private $releaseDate;
         private $img;
+        private $genres;
+        private $artiste;
     
-        public function __construct($entryId, $by, $title, $releaseYear, $genre, $parent, $img)
+        public function __construct($id_album, $title, $releaseDate, $img, $genres, $artiste)
         {
-            $this->entryId = $entryId;
-            $this->by = $by;
+            $this->id_album = $id_album;
             $this->title = $title;
-            $this->releaseYear = $releaseYear;
-            $this->genre = $genre;
-            $this->parent = $parent;
+            $this->releaseDate = $releaseDate;
             $this->img = $img;
+            $this->genres = $genres;
+            $this->artiste = $artiste;
         }
     
         /**
         * Permet de récupérer l'id de l'album
         */ 
-        public function getEntryId()
+        public function getId()
         {
-            return $this->entryId;
+            return $this->id_album;
         }
 
         /**
         * Permet de récupérer l'auteur de l'album
         */ 
-        public function getBy()
+        public function getArtiste()
         {
-            return $this->by;
+            return $this->artiste;
         }
     
         /**
@@ -50,25 +48,17 @@ class Album implements IRender{
         /**
         * Permet de récupérer l'année de sortie de l'album
         */ 
-        public function getReleaseYear()
+        public function getReleaseDate()
         {
-            return $this->releaseYear;
+            return $this->releaseDate;
         }
         
         /**
         * Permet de récupérer les genres de l'album
         */ 
-        public function getGenre()
+        public function getGenres()
         {
-            return $this->genre;
-        }
-
-        /**
-         * Permet de récupérer la personne qui a écrit l'album
-         */
-        public function getParent()
-        {
-            return $this->parent;
+            return $this->genres;
         }
 
         /**
@@ -82,20 +72,19 @@ class Album implements IRender{
         public function render()
         {
             $rend = "<div class=\"container-sm mb-5\">
-            <p>{$this->entryId}</p>
-            <a class=\"link-opacity-50-hover\" href=\"/test.php?interprete={$this->by}\">
-            <h1 class=\"fs-1\">{$this->by}</h1>
+            <p>{$this->id_album}</p>
+            <a class=\"link-opacity-50-hover\" href=\"/test.php?interprete={$this->artiste->getNomDeScene()}\">
+            <h1 class=\"fs-1\">{$this->artiste->getNomDeScene()}</h1>
             </a>
             <h2 class=\"fs-2\">{$this->title}</h2>
-            <p class=\"fs-5\">Sortie en : {$this->releaseYear}</p>
+            <p class=\"fs-5\">Sortie en : {$this->releaseDate}</p>
             <span class=\"fs-5\">Genre : <div class=\"list-group\">";
-            foreach ($this->genre as $genre) {
-                $rend .= "<a href=\"#\" class=\"list-group-item list-group-item-action fs-6\">{$genre}</a>";
+            foreach ($this->genres as $genre) {
+                $rend .= "<a href=\"#\" class=\"list-group-item list-group-item-action fs-6\">{$genre->getLabelle()}</a>";
             }
             $rend .= "
             </div>
             </span>
-            <p class=\"fs-5\">Ecrit par : {$this->parent}</p>
             <img src=\"/fixtures/fixtures/images/{$this->img}\" alt=\"img-album\">
             </div>
             ";
