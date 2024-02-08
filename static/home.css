@@ -1,5 +1,6 @@
 body {
   display: flex;
+  margin: 0;
 }
 
 aside {
@@ -16,30 +17,32 @@ main {
 
 li {
   list-style-type: none;
-  margin-bottom: 1em;
+  margin-top: 1em;
 }
 
-a {
+.lien_aside {
   text-decoration: none;
   color: white;
   font-size: 1.5em;
+  display: flex;
+  align-items: center;
 }
 
 .image_loupe {
   height: 2.5em;
-  margin-right: 2em;
+  margin-right: 2.5em;
   margin-left: 0.6em;
 }
 
 .image_nav {
   height: 2.5em;
-  margin-right: 2em;
+  margin-right: 3em;
   margin-left: 0.6em;
 }
 
 .image_add {
   height: 4em;
-  margin-right: 1em;
+  margin-right: 0.6em;
   margin-left: 0%;
 }
 .image_librarie {
@@ -47,4 +50,12 @@ a {
   width: 60px;
   margin-left: 0.6em;
   margin-right: 1.5em;
+}
+
+.Titre_aside {
+  color: white;
+}
+
+.white-text {
+  color: white;
 }

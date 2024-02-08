@@ -3,24 +3,21 @@
     <section>
         <nav>
             <ul>
-                <li><a href=""> <img class="image_nav" src="../static/image/accueil.png" alt="Home">Home</a></li>
-                <li><a href=""> <img class="image_loupe" src="../static/image/loupe.png" alt="Search"> Search</a></li>
-                <li><a href=""> <img class="image_librarie" src="../static/image/librairie.png" alt="Library"> Your Library</a></li>
+                <li><a class="lien_aside"  href=""> <img class="image_nav" src="../static/image/accueil.png" alt="Home"><p>Home</p></a></li>
+                <li><a class="lien_aside"  href=""> <img class="image_loupe" src="../static/image/loupe.png" alt="Search"> <p>Search</p></a></li>
+                <li><a class="lien_aside"  href=""> <img class="image_librarie" src="../static/image/librairie.png" alt="Library"> <p>Your Library</p></a></li>
             </ul>
-            <h2>Playlists</h2>
+            <h2 class="Titre_aside">Playlists</h2>
             <ul>
-                <li><a href=""> <img class="image_add" src="../static/image/add.png" alt="create">create playlist</a></li>
-                <li><a href=""> <img class="image_nav" src="../static/image/" alt="Home">liked songs</a></li>
+                <li><a class="lien_aside"  href=""> <img class="image_add" src="../static/image/add.png" alt="create">create playlist</a></li>
             </ul>
         </nav>
     </section>
-    <section>s
-        <h2>
-            Greatest song of 2024
-        </h2>
+    <section>
+        <h2 class="Titre_aside">Greatest song of 2024</h2>
         <?php foreach ($albums as $album) {
 
-        echo "<li>". $album->getTitle() ."</li>";
+            echo "<li class='white-text'>" . $album->getTitle() . "</li>";
         } ?>
     </section>
 </aside>
