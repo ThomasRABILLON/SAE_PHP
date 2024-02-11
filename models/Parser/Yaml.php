@@ -16,7 +16,15 @@ class Yaml implements IParser
                 $value = str_replace('-', '', $value);
             }
             $val = explode(':', $value);
-            $album[trim($val[0])] = trim($val[1]);
+            $key = trim($val[0]);
+            $val = trim($val[1]);
+            if (str_starts_with($val, '[')) {
+                $val = str_replace('[', '', $val);
+                $val = str_replace(']', '', $val);
+                $val = str_replace(' ', '', $val);
+                $val = explode(',', $val);
+            }
+            $album[$key] = $val;
         }
         array_push($parsed, $album);
         return $parsed;

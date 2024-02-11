@@ -10,7 +10,7 @@ class Genre
     public function __construct($id, $labelle)
     {
         $this->id = $id;
-        $this->nom = $labelle;
+        $this->labelle = $labelle;
     }
 
     public function getId()

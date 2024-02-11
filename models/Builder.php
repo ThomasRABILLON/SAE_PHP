@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Classe\Album;
 use App\Models\Classe\Artiste;
 use App\Models\Classe\Genre;
+use App\Models\Classe\Utilisateur;
 
 class Builder
 {
@@ -15,22 +16,14 @@ class Builder
         $genres = [];
         foreach ($parsed as $key => $value) {
             $genre = [];
-            $genresJson = str_replace("]", "", str_replace("[", "", $value["genre"]));
-            foreach ($value["genre"] as $g) {
-                $gen = null;
-                foreach ($genres as $ge) {
-                    if ($ge->getNom() == $g) {
-                        $gen = $ge;
-                    }
-                }
-                if ($genre == null) {
-                    $last_genre = end($genres);
-                    $id_genre = $last_genre == false ? 1 : $last_genre->getId() + 1;
-                    $gen = new Genre($id_genre, $g);
-                    $genres[] = $gen;
-                }
-                $genre[] = $gen;
+            foreach ($value["genre"] as $v) {
+                $genre[] = new Genre(
+                    1,
+                    $v
+                );
             }
+            $genres[] = $genre;
+
             $artiste = null;
             foreach ($artistes as $a) {
                 if ($a->getNomDeScene() == $value["by"]) {
@@ -57,7 +50,17 @@ class Builder
                 $artiste
             );
         }
-        var_dump($genres);
         return $albums;
+    }
+
+    public static function createUserFromDatabase($user)
+    {
+        return new Utilisateur(
+            $user['id'],
+            $user['nom'],
+            $user['prenom'],
+            $user['dateNaissance'],
+            $user['mdp']
+        );
     }
 }

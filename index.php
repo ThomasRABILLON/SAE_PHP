@@ -2,6 +2,7 @@
 
 require_once 'models/Autoloader.php';
 require_once 'controlleurs/home.php';
+require_once 'controlleurs/connection.php';
 
 use App\Models\Autoloader;
 
@@ -15,6 +16,12 @@ switch ($uri) {
         break;
     case '/home':
         home();
+        break;
+    case '/register':
+        register($_POST);
+        break;
+    case '/login':
+        login($_POST);
         break;
     
     default:

@@ -25,8 +25,7 @@ CREATE TABLE ARTISTES (
 );
 
 CREATE TABLE GENRE (
-  id_genre NUMBER PRIMARY KEY NOT NULL,
-  libelle VARCHAR(42)
+  libelle_genre PRIMARY KEY VARCHAR(42)
 );
 
 CREATE TABLE ALBUMS (
@@ -47,10 +46,10 @@ CREATE TABLE PLAYLIST (
 
 CREATE TABLE A_GENRE (
   id_album NUMBER NOT NULL,
-  id_genre NUMBER NOT NULL,
-  PRIMARY KEY (id_album, id_genre),
+  libelle_genre NUMBER NOT NULL,
+  PRIMARY KEY (id_album, libelle_genre),
   FOREIGN KEY (id_album) REFERENCES ALBUMS (id_album),
-  FOREIGN KEY (id_genre) REFERENCES GENRE (id_genre)
+  FOREIGN KEY (libelle_genre) REFERENCES GENRE (libelle_genre)
 );
 
 CREATE TABLE EST_DANS (

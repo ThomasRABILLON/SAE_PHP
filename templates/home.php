@@ -1,6 +1,8 @@
 <?php
+session_start();
 $title = "Home";
 ob_start();
+var_dump($_SESSION['user']->getId());
 ?>
 
 <div class="container-sm mt-5">
