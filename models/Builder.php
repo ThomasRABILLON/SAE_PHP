@@ -50,16 +50,21 @@ class Builder
                 $artiste
             );
         }
-        return $albums;
+        return [
+            "albums" => $albums,
+            "artistes" => $artistes,
+            "genres" => $genres
+        ];
     }
 
     public static function createUserFromDatabase($user)
     {
         return new Utilisateur(
-            $user['id'],
+            $user['id_user'],
             $user['nom'],
             $user['prenom'],
-            $user['dateNaissance'],
+            date_create($user['date_naissance']),
+            null,
             $user['mdp']
         );
     }
