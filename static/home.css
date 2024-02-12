@@ -13,6 +13,7 @@ aside {
 main {
   order: 1; /* Change the order to 1 to move it to the left */
   flex: 1; /* Take the remaining space */
+  background: linear-gradient(to top, #000000, #010138);
 }
 
 li {

@@ -16,6 +16,9 @@ switch ($uri) {
     case '/home':
         home();
         break;
+    case '/ajoutAlbum':
+        ajoutAlbum();
+        break;
     
     default:
         # code...
