@@ -1,10 +1,9 @@
 <?php
-session_start();
-$title = "Home";
+$title = "Librairie";
 ob_start();
 ?>
-
-<div class="container-sm mt-5">
+<link rel="stylesheet" href="./static/librairie.css">
+<div class="albums-wrapper">
     <?php foreach ($albums as $album) {
         echo $album->render();
     } ?>

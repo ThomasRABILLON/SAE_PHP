@@ -7,6 +7,7 @@ use App\Models\Classe\Artiste;
 use App\Models\Classe\Genre;
 use App\Models\Classe\Utilisateur;
 use App\Models\Database\Connection;
+use App\Models\Classe\Playlist;
 
 class Builder
 {
@@ -103,5 +104,23 @@ class Builder
             );
         }
         return $allAlbums;
+    }
+
+    public static function createPlaylistFromDatabase(array $playlists)
+    {
+        $allPlaylists = [];
+        foreach ($playlists as $playlist) {
+            $albums = [];
+            foreach (Connection::getAlbumsFromPlaylist($playlist['id_playlist']) as $album) {
+                $albums[] = Connection::getAlbum($album['id_album']);
+            }
+            $allPlaylists[] = new Playlist(
+                $playlist['id_playlist'],
+                $playlist['nom'],
+                Builder::createUserFromDatabase(Connection::getUser($playlist['email'])),
+                Builder::createAllAlbumsFromDatabase($albums)
+            );
+        }
+        return $allPlaylists;
     }
 }

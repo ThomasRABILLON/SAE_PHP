@@ -2,6 +2,7 @@
 
 namespace App\Models\Database;
 
+use App\Models\Classe\Utilisateur;
 use PDO;
 use App\Models\Builder;
 use App\Models\Parser\Yaml;
@@ -115,6 +116,16 @@ class Connection
         return $albums;
     }
 
+    public static function getAlbum($id)
+    {
+        $pdo = self::getInstance();
+        $stmt = $pdo->getPDO()->prepare('SELECT * FROM ALBUMS WHERE id_album = :id_album');
+        $stmt->bindParam(':id_album', $id);
+        $stmt->execute();
+        $album = $stmt->fetch();
+        return $album;
+    }
+
     public static function getArtiste($id)
     {
         $pdo = self::getInstance();
@@ -133,5 +144,34 @@ class Connection
         $stmt->execute();
         $genres = $stmt->fetchAll();
         return $genres;
+    }
+
+    public static function getPlaylistUser(Utilisateur $user)
+    {
+        $pdo = self::getInstance();
+        $stmt = $pdo->getPDO()->prepare('SELECT * FROM PLAYLIST WHERE email = :email');
+        $stmt->bindParam(':email', $user->getEmail());
+        $stmt->execute();
+        $playlists = $stmt->fetchAll();
+        return $playlists;
+    }
+
+    public static function getAlbumsFromPlaylist($id)
+    {
+        $pdo = self::getInstance();
+        $stmt = $pdo->getPDO()->prepare('SELECT * FROM EST_DANS WHERE id_playlist = :id_playlist');
+        $stmt->bindParam(':id_playlist', $id);
+        $stmt->execute();
+        $albums = $stmt->fetchAll();
+        return $albums;
+    }
+
+    public static function createPlaylist($nom, Utilisateur $user)
+    {
+        $pdo = self::getInstance();
+        $stmt = $pdo->getPDO()->prepare('INSERT INTO PLAYLIST (nom, email) VALUES (:nom, :email)');
+        $stmt->bindParam(':nom', $nom);
+        $stmt->bindParam(':email', $user->getEmail());
+        $stmt->execute();
     }
 }

@@ -8,6 +8,7 @@ require_once 'controlleurs/insert.php';
 require_once 'controlleurs/connection.php';
 require_once 'controlleurs/profil.php';
 require_once 'controlleurs/insert.php';
+require_once 'controlleurs/playlists.php';
 
 use App\Models\Autoloader;
 
@@ -37,23 +38,11 @@ switch ($uri) {
     case '/insert':
         insert();
         break;
-    case '/register':
-        register($_POST);
+    case '/playlists':
+        playlists();
         break;
-    case '/login':
-        login($_POST);
-        break;
-    case '/logout':
-        logout();
-        break;
-    case '/profil':
-        profil($_POST);
-        break;
-    case '/insert':
-        insert();
-        break;
-    case '/librairie':
-        librairie();
+    case '/create_playlist':
+        createPlaylist($_POST);
         break;
     default:
         # code...
