@@ -77,14 +77,14 @@ class Album implements IRender{
             $rend .= "<h1 class=\"fs-1\">{$this->artiste->getNomDeScene()}</h1>";
             $rend .= "</a>";
             $rend .= "<h2 class=\"fs-2\">{$this->title}</h2>";
-            $rend .= "<p class=\"fs-5\">Sortie en :" . date_format($this->releaseDate, 'Y') . "</p>";
+            $rend .= "<p class=\"fs-5\">Sortie en :" . date_format(date_create($this->releaseDate), 'Y') . "</p>";
             $rend .= "<span class=\"fs-5\">Genre : <div class=\"list-group\">";
             foreach ($this->genres as $genre) {
-                $rend .= "<a href=\"#\" class=\"list-group-item list-group-item-action fs-6\">{$genre->getLibelle()}</a>";
+                $rend .= "<div><a href=\"#\" class=\"list-group-item list-group-item-action fs-6\">{$genre->getLibelle()}</a></div>";
             }
             $rend .= "</div>";
             $rend .= "</span>";
-            $rend .= "<img src=\"/images/{$this->img}\" alt=\"img-album\">";
+            $rend .= "<img src=\"{$this->img}\" alt=\"img-album\">";
             $rend .= "</div>";
             return $rend;
         }
