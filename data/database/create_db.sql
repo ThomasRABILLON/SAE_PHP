@@ -32,7 +32,7 @@ CREATE TABLE ALBUMS (
   id_album INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
   title VARCHAR(42),
   release_date DATE,
-  img BLOB,
+  img VARCHAR(42),
   id_art INTEGER NOT NULL,
   FOREIGN KEY (id_art) REFERENCES ARTISTES (id_art)
 );

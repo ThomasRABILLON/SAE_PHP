@@ -60,10 +60,16 @@ class Connection
             $stmt->bindParam(':id_album', $album->getId());
             $stmt->bindParam(':title', $album->getTitle());
             $stmt->bindParam(':release_date', date_format($album->getReleaseDate(), 'Y-m-d'));
-            var_dump(fopen($album->getImg(), 'rb'));
-            $stmt->bindParam(':img', fopen('./images/'.$album->getImg(), 'rb'));
+            $img_path = "./images/" . $album->getImg();
+            $stmt->bindParam(':img', $img_path);
             $stmt->bindParam(':id_artiste', $album->getArtiste()->getId());
             $stmt->execute();
+            foreach ($album->getGenres() as $genre) {
+                $stmt = $pdo->getPDO()->prepare('INSERT INTO A_GENRE (id_album, libelle_genre) VALUES (:id_album, :libelle_genre)');
+                $stmt->bindParam(':id_album', $album->getId());
+                $stmt->bindParam(':libelle_genre', $genre->getLibelle());
+                $stmt->execute();
+            }
         }
     }
     
@@ -98,5 +104,34 @@ class Connection
         $stmt->bindParam(':date_naissance', date_format($user->getDateNaissance(), 'Y-m-d'));
         $stmt->bindParam(':id_user', $user->getId());
         $stmt->execute();
+    }
+
+    public static function getAlbums()
+    {
+        $pdo = self::getInstance();
+        $stmt = $pdo->getPDO()->prepare('SELECT * FROM ALBUMS');
+        $stmt->execute();
+        $albums = $stmt->fetchAll();
+        return $albums;
+    }
+
+    public static function getArtiste($id)
+    {
+        $pdo = self::getInstance();
+        $stmt = $pdo->getPDO()->prepare('SELECT * FROM ARTISTES WHERE id_art = :id_art');
+        $stmt->bindParam(':id_art', $id);
+        $stmt->execute();
+        $artiste = $stmt->fetch();
+        return $artiste;
+    }
+
+    public static function getAllGenresAlbum($id)
+    {
+        $pdo = self::getInstance();
+        $stmt = $pdo->getPDO()->prepare('SELECT * FROM A_GENRE WHERE id_album = :id_album');
+        $stmt->bindParam(':id_album', $id);
+        $stmt->execute();
+        $genres = $stmt->fetchAll();
+        return $genres;
     }
 }
