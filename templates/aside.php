@@ -16,7 +16,6 @@
     <section>
         <h2 class="Titre_aside">Greatest song of 2024</h2>
         <?php foreach ($albums as $album) {
-
             echo "<li class='white-text'>" . $album->getTitle() . "</li>";
         } ?>
     </section>

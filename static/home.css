@@ -5,9 +5,11 @@ body {
 
 aside {
   background-color: black;
-  order: 1; /* Change the order to 2 to move it to the right */
-  flex: 0 0 20%; /* Adjust the width as needed */
-  position: static;
+  flex: 0 0 20%; /* Ajustez la largeur selon vos besoins */
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  height: 100vh; /* Assurez-vous que l'aside prend toute la hauteur de la fenêtre */
 }
 
 main {
