@@ -80,7 +80,7 @@ class Album implements IRender{
             $rend .= "<p class=\"fs-5\">Sortie en :" . date_format($this->releaseDate, 'Y') . "</p>";
             $rend .= "<span class=\"fs-5\">Genre : <div class=\"list-group\">";
             foreach ($this->genres as $genre) {
-                $rend .= "<a href=\"#\" class=\"list-group-item list-group-item-action fs-6\">{$genre->getLabelle()}</a>";
+                $rend .= "<a href=\"#\" class=\"list-group-item list-group-item-action fs-6\">{$genre->getLibelle()}</a>";
             }
             $rend .= "</div>";
             $rend .= "</span>";

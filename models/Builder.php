@@ -17,12 +17,11 @@ class Builder
         foreach ($parsed as $key => $value) {
             $genre = [];
             foreach ($value["genre"] as $v) {
-                $genre[] = new Genre(
-                    1,
-                    $v
-                );
+                $genre[] = new Genre(strtolower($v));
             }
-            $genres[] = $genre;
+            foreach ($genre as $g) {
+                array_push($genres, $g);
+            }
 
             $artiste = null;
             foreach ($artistes as $a) {
@@ -60,12 +59,17 @@ class Builder
     public static function createUserFromDatabase($user)
     {
         return new Utilisateur(
-            $user['id_user'],
+            $user['email'],
             $user['nom'],
             $user['prenom'],
             date_create($user['date_naissance']),
             null,
             $user['mdp']
         );
+    }
+
+    public static function createAllAlbumsFromDatabase(array $albums)
+    {
+        
     }
 }

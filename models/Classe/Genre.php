@@ -4,22 +4,15 @@ namespace App\Models\Classe;
 
 class Genre
 {
-    private $id;
-    private $labelle;
+    private $libelle;
 
-    public function __construct($id, $labelle)
+    public function __construct($libelle)
     {
-        $this->id = $id;
-        $this->labelle = $labelle;
+        $this->libelle = $libelle;
     }
 
-    public function getId()
+    public function getLibelle()
     {
-        return $this->id;
-    }
-
-    public function getLabelle()
-    {
-        return $this->labelle;
+        return $this->libelle;
     }
 }

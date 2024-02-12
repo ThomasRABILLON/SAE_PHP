@@ -6,13 +6,18 @@ ob_start();
 
 <form action="/login" method="post">
     <div class="form-group">
-        <label for="nom">Nom</label>
-        <input type="text" class="form-control" id="nom" name="nom" required>
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email" name="email" required>
     </div>
     <div class="form-group">
         <label for="mdp">Mot de passe</label>
         <input type="password" class="form-control" id="mdp" name="mdp" required>
     </div>
+    <?php 
+    if (isset($error)) {
+        echo "<p>" . $error . "</p>";
+    }
+    ?>
     <button type="submit" class="btn btn-primary">Se connecter</button>
 </form>
 

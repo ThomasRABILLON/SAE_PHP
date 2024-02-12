@@ -4,16 +4,15 @@ namespace App\Models\Classe;
 
 class Utilisateur
 {
-    private $id;
+    private $email;
     private $nom;
     private $prenom;
     private $dateNaissance;
     private $mdp;
-    private $follows;
 
-    public function __construct(int $id, $nom, $prenom, $dateNaissance, $follows, $mdp)
+    public function __construct($email, $nom, $prenom, $dateNaissance, $follows, $mdp)
     {
-        $this->id = $id;
+        $this->email = $email;
         $this->nom = $nom;
         $this->prenom = $prenom;
         $this->dateNaissance = $dateNaissance;
@@ -21,9 +20,9 @@ class Utilisateur
         $this->mdp = $mdp;
     }
 
-    public function getId()
+    public function getEmail()
     {
-        return $this->id;
+        return $this->email;
     }
 
     public function getNom()

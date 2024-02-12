@@ -10,7 +10,7 @@ DROP TABLE IF EXISTS UTILISATEURS;
 
 
 CREATE TABLE UTILISATEURS (
-  id_user NUMBER PRIMARY KEY NOT NULL,
+  email VARCHAR(42) PRIMARY KEY NOT NULL,
   nom VARCHAR(42),
   prenom VARCHAR(42),
   date_naissance VARCHAR(42),
@@ -18,51 +18,51 @@ CREATE TABLE UTILISATEURS (
 );
 
 CREATE TABLE ARTISTES (
-  id_art NUMBER PRIMARY KEY NOT NULL,
+  id_art INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
   nom_de_scene VARCHAR(42),
   nom VARCHAR(42),
   prenom VARCHAR(42)
 );
 
 CREATE TABLE GENRE (
-  libelle_genre PRIMARY KEY VARCHAR(42)
+  libelle_genre VARCHAR(42) PRIMARY KEY NOT NULL
 );
 
 CREATE TABLE ALBUMS (
-  id_album NUMBER PRIMARY KEY NOT NULL,
+  id_album INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
   title VARCHAR(42),
   release_date DATE,
   img BLOB,
-  id_art NUMBER NOT NULL,
+  id_art INTEGER NOT NULL,
   FOREIGN KEY (id_art) REFERENCES ARTISTES (id_art)
 );
 
 CREATE TABLE PLAYLIST (
-  id_playlist NUMBER PRIMARY KEY NOT NULL,
+  id_playlist INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
   nom VARCHAR(42),
   id_user VARCHAR(42) NOT NULL,
   FOREIGN KEY (id_user) REFERENCES UTILISATEURS (id_user)
 );
 
 CREATE TABLE A_GENRE (
-  id_album NUMBER NOT NULL,
-  libelle_genre NUMBER NOT NULL,
+  id_album INTEGER NOT NULL,
+  libelle_genre INTEGER NOT NULL,
   PRIMARY KEY (id_album, libelle_genre),
   FOREIGN KEY (id_album) REFERENCES ALBUMS (id_album),
   FOREIGN KEY (libelle_genre) REFERENCES GENRE (libelle_genre)
 );
 
 CREATE TABLE EST_DANS (
-  id_playlist NUMBER NOT NULL,
-  id_album NUMBER NOT NULL,
+  id_playlist INTEGER NOT NULL,
+  id_album INTEGER NOT NULL,
   PRIMARY KEY (id_playlist, id_album),
   FOREIGN KEY (id_playlist) REFERENCES PLAYLIST (id_playlist),
   FOREIGN KEY (id_album) REFERENCES ALBUMS (id_album)
 );
 
 CREATE TABLE SUIT (
-  id_art NUMBER NOT NULL,
-  id_user NUMBER NOT NULL,
+  id_art INTEGER NOT NULL,
+  id_user INTEGER NOT NULL,
   PRIMARY KEY (id_art, id_user),
   FOREIGN KEY (id_art) REFERENCES ARTISTES (id_art),
   FOREIGN KEY (id_user) REFERENCES UTILISATEURS (id_user)

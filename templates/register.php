@@ -6,6 +6,10 @@ ob_start();
 
 <form action="/register" method="post">
     <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email" name="email" required>
+    </div>
+    <div class="form-group">
         <label for="nom">Nom</label>
         <input type="text" class="form-control" id="nom" name="nom" required>
     </div>
@@ -21,6 +25,11 @@ ob_start();
         <label for="mdp">Mot de passe</label>
         <input type="password" class="form-control" id="mdp" name="mdp" required>
     </div>
+    <?php 
+    if (isset($error)) {
+        echo "<p>" . $error . "</p>";
+    }
+    ?>
     <button type="submit" class="btn btn-primary">Créer</button>
 </form>
 
