@@ -5,6 +5,9 @@ require_once 'controlleurs/home.php';
 require_once 'controlleurs/connection.php';
 require_once 'controlleurs/profil.php';
 require_once 'controlleurs/insert.php';
+require_once 'controlleurs/connection.php';
+require_once 'controlleurs/profil.php';
+require_once 'controlleurs/insert.php';
 
 use App\Models\Autoloader;
 
@@ -34,7 +37,24 @@ switch ($uri) {
     case '/insert':
         insert();
         break;
-    
+    case '/register':
+        register($_POST);
+        break;
+    case '/login':
+        login($_POST);
+        break;
+    case '/logout':
+        logout();
+        break;
+    case '/profil':
+        profil($_POST);
+        break;
+    case '/insert':
+        insert();
+        break;
+    case '/librairie':
+        librairie();
+        break;
     default:
         # code...
         break;

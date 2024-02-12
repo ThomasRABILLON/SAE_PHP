@@ -3,9 +3,9 @@
     <section>
         <nav>
             <ul>
-                <li><a class="lien_aside"  href=""> <img class="image_nav" src="../static/image/accueil.png" alt="Home"><p>Home</p></a></li>
+                <li><a class="lien_aside"  href="/home"> <img class="image_nav" src="../static/image/accueil.png" alt="Home"><p>Home</p></a></li>
                 <li><a class="lien_aside"  href=""> <img class="image_loupe" src="../static/image/loupe.png" alt="Search"> <p>Search</p></a></li>
-                <li><a class="lien_aside"  href=""> <img class="image_librarie" src="../static/image/librairie.png" alt="Library"> <p>Your Library</p></a></li>
+                <li><a class="lien_aside"  href="/librairie"> <img class="image_librairie" src="../static/image/librairie.png" alt="Library"> <p>Library</p></a></li>
             </ul>
             <h2 class="Titre_aside">Playlists</h2>
             <ul>
