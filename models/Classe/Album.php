@@ -71,21 +71,12 @@ class Album implements IRender{
 
         public function render()
         {
-            $rend = "<div class=\"container-sm mb-5\">";
-            $rend .= "<p>{$this->id_album}</p>";
-            $rend .= "<a class=\"link-opacity-50-hover\" href=\"/test.php?interprete={$this->artiste->getNomDeScene()}\">";
-            $rend .= "<h1 class=\"fs-1\">{$this->artiste->getNomDeScene()}</h1>";
-            $rend .= "</a>";
-            $rend .= "<h2 class=\"fs-2\">{$this->title}</h2>";
-            $rend .= "<p class=\"fs-5\">Sortie en :" . date_format(date_create($this->releaseDate), 'Y') . "</p>";
-            $rend .= "<span class=\"fs-5\">Genre : <div class=\"list-group\">";
-            foreach ($this->genres as $genre) {
-                $rend .= "<div><a href=\"#\" class=\"list-group-item list-group-item-action fs-6\">{$genre->getLibelle()}</a></div>";
-            }
-            $rend .= "</div>";
-            $rend .= "</span>";
-            $rend .= "<img src=\"{$this->img}\" alt=\"img-album\">";
-            $rend .= "</div>";
+            $rend = '<div class="album-container">';
+            $rend .= '<img src="' . $this->getImg() . '" alt="' . $this->getTitle() . '">';
+            $rend .= '<h2>' . $this->getTitle() . '</h2>';
+            $rend .= '<p>' . $this->getArtiste()->getNomDeScene() . '</p>';
+            $rend .= '<button>Voir plus</button>';
+            $rend .= '</div>';
             return $rend;
         }
 }
