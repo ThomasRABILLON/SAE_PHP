@@ -9,7 +9,7 @@ aside {
   position: sticky;
   top: 0;
   z-index: 1000;
-  height: 100vh; /* Assurez-vous que l'aside prend toute la hauteur de la fenêtre */
+  height: 100%; /* Assurez-vous que l'aside prend toute la hauteur de la fenêtre */
 }
 
 main {
