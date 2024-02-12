@@ -10,13 +10,12 @@ class Utilisateur
     private $dateNaissance;
     private $mdp;
 
-    public function __construct($email, $nom, $prenom, $dateNaissance, $follows, $mdp)
+    public function __construct($email, $nom, $prenom, $dateNaissance, $mdp)
     {
         $this->email = $email;
         $this->nom = $nom;
         $this->prenom = $prenom;
         $this->dateNaissance = $dateNaissance;
-        $this->follows = $follows;
         $this->mdp = $mdp;
     }
 
@@ -53,11 +52,6 @@ class Utilisateur
     public function setDateNaissance($dateNaissance)
     {
         $this->dateNaissance = $dateNaissance;
-    }
-
-    public function getFollows()
-    {
-        return $this->follows;
     }
 
     public function getMdp()
