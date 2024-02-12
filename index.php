@@ -2,12 +2,6 @@
 
 require_once 'models/Autoloader.php';
 require_once 'controlleurs/home.php';
-require_once 'controlleurs/connection.php';
-require_once 'controlleurs/profil.php';
-require_once 'controlleurs/insert.php';
-require_once 'controlleurs/connection.php';
-require_once 'controlleurs/profil.php';
-require_once 'controlleurs/insert.php';
 
 use App\Models\Autoloader;
 
