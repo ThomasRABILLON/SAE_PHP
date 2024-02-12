@@ -52,3 +52,11 @@ input[type="file"] {
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
+
+.boutongenre {
+  padding: 15px 20px 15px 20px; /* top right bottom left */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}

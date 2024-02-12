@@ -53,20 +53,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label for="titre">Titre :</label>
                 <input type="text" id="titre" name="titre" required>
             </div>
-            <div class="form-group">
-                <label for="categories">Genre :</label>
-                <select id="categories" name="categories" required>
-                    <option value="rock">Rock</option>
-                    <option value="pop">Pop</option>
-                    <option value="rap">Rap</option>
-                    <option value="jazz">Jazz</option>
-                    <option value="classique">c</option>
-                </select>
-                <p> </p>
-                <button class="ajouter">Ajouter</button>
+            <div class="form-group" id="categories-container">
+                <label>Genres :</label>
+                <div id="selected-genres">
+                    <!-- Les genres sélectionnés seront affichés ici -->
+                </div>
+                <button class="boutongenre" type="button" onclick="addGenre()">+</button>
             </div>
-            
+            <button class="ajouter">Ajouter</button>
         </form>
     </div>
+    <script>
+        function addGenre() {
+            var select = document.createElement("select");
+            select.name = "categories[]";
+            select.required = true;
+            select.innerHTML = `
+                <option value="rock">Rock</option>
+                <option value="pop">Pop</option>
+                <option value="rap">Rap</option>
+                <option value="jazz">Jazz</option>
+                <option value="classique">Classique</option>
+            `;
+            
+            var container = document.getElementById("categories-container");
+            container.appendChild(select);
+        }
+    </script>
 </body>
 </html>
