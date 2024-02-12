@@ -8,3 +8,8 @@ function home()
     $albums = Builder::build(Yaml::parse('data/extrait.yml'));
     require 'templates/home.php';
 }
+
+function librairie(){
+    $albums = Builder::build(Yaml::parse('data/extrait.yml'));
+    require 'templates/librairie.php';
+}
