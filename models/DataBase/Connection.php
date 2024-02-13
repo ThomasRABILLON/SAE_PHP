@@ -229,4 +229,15 @@ class Connection
         $artistes = $stmt->fetchAll();
         return $artistes;
     }
+
+    public static function searchAlbums($recherche)
+    {
+        $pdo = self::getInstance();
+        $stmt = $pdo->getPDO()->prepare('SELECT * FROM ALBUMS WHERE title LIKE :recherche');
+        $search = '%' . $recherche . '%';
+        $stmt->bindParam(':recherche', $search);
+        $stmt->execute();
+        $albums = $stmt->fetchAll();
+        return $albums;
+    }
 }
