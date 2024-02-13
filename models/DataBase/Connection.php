@@ -99,11 +99,11 @@ class Connection
     public static function updateUser($user)
     {
         $pdo = self::getInstance();
-        $stmt = $pdo->getPDO()->prepare('UPDATE UTILISATEURS SET nom = :nom, prenom = :prenom, date_naissance = :date_naissance WHERE id_user = :id_user');
+        $stmt = $pdo->getPDO()->prepare('UPDATE UTILISATEURS SET nom = :nom, prenom = :prenom, date_naissance = :date_naissance WHERE email = :email');
         $stmt->bindParam(':nom', $user->getNom());
         $stmt->bindParam(':prenom', $user->getPrenom());
         $stmt->bindParam(':date_naissance', date_format($user->getDateNaissance(), 'Y-m-d'));
-        $stmt->bindParam(':id_user', $user->getId());
+        $stmt->bindParam(':email', $user->getEmail());
         $stmt->execute();
     }
 
