@@ -1,17 +1,16 @@
 <?php
 
-use App\Models\Builder;
-use App\Models\Parser\Yaml;
 use App\Models\DataBase\Connection;
+use App\Models\Builder;
 
-function home()
+function artistesSuivi() 
 {
     session_start();
     if (!isset($_SESSION['user'])) {
         header('Location: /login');
         exit();
     }
-    // $albums = Builder::buildFromJson(Yaml::parse('data/yml/extrait.yml'))['albums'];
     $albums = Builder::createAllAlbumsFromDatabase(Connection::getAlbums());
-    require 'templates/home.php';
+    $artistes = Builder::createArtitesSuivi(Connection::getArtistesSuivi($_SESSION['user']));
+    require 'templates/artistesSuivi.php';
 }
