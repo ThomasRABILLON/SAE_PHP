@@ -10,6 +10,7 @@ require_once 'controlleurs/profil.php';
 require_once 'controlleurs/insert.php';
 require_once 'controlleurs/playlists.php';
 require_once 'controlleurs/artiste.php';
+require_once 'controlleurs/admin.php';
 
 use App\Models\Autoloader;
 
@@ -53,6 +54,9 @@ switch ($uri) {
         break;
     case '/suivi':
         artistesSuivi();
+        break;
+    case '/admin':
+        admin();
         break;
     default:
         # code...

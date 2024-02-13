@@ -229,4 +229,13 @@ class Connection
         $artistes = $stmt->fetchAll();
         return $artistes;
     }
+
+    public static function getArtistes()
+    {
+        $pdo = self::getInstance();
+        $stmt = $pdo->getPDO()->prepare('SELECT * FROM ARTISTES');
+        $stmt->execute();
+        $artistes = $stmt->fetchAll();
+        return $artistes;
+    }
 }

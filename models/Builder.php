@@ -72,7 +72,7 @@ class Builder
     public static function createArtiste(array $artiste)
     {
         return new Artiste(
-            $artiste['id'],
+            $artiste['id_art'],
             $artiste['nom_de_scene'],
             $artiste['nom'],
             $artiste['prenom']
