@@ -51,7 +51,7 @@ switch ($uri) {
     case '/playlist':
         playlist($_GET['id']);
         break;
-    case '/artistes/suivi':
+    case '/suivi':
         artistesSuivi();
         break;
     default:

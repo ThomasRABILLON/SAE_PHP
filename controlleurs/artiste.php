@@ -10,6 +10,7 @@ function artistesSuivi()
         header('Location: /login');
         exit();
     }
+    $albums = Builder::createAllAlbumsFromDatabase(Connection::getAlbums());
     $artistes = Builder::createArtitesSuivi(Connection::getArtistesSuivi($_SESSION['user']));
     require 'templates/artistesSuivi.php';
 }
