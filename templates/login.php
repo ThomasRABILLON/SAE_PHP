@@ -20,6 +20,7 @@ ob_start();
             }
             ?>
             <button type="submit" class="btn btn-primary">Se connecter</button>
+            <a id="lienregister" href="/register">Créer un compte</a>
         </form>
     </div>
 </div>
