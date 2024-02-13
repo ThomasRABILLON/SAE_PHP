@@ -13,6 +13,29 @@
       <input type="radio" name="css-tabs" id="tab-1" checked class="tab-switch">
       <label for="tab-1" class="tab-label">Albums</label>
       <div class="tab-content">
+      <h1>Ajouter un album</h1>
+      <form action="traitement.php" method="post" enctype="multipart/form-data">
+          <div class="form-group">
+              <label for="image">Image :</label>
+              <input type="file" id="image" name="image" accept="image/*" required>
+          </div>
+          <div class="form-group">
+              <label for="titre">Titre :</label>
+              <input type="text" id="titre" name="titre" required>
+          </div>
+          <div class="form-group" id="categories-container">
+              <label>Genres :</label>
+              <select name="categories[]" required>
+                <?php foreach ($genres as $genre) { ?>
+                    <option value="<?= $genre->getLibelle() ?>"><?= $genre->getLibelle() ?></option>
+                <?php } ?>
+              </select>
+              <div id="selected-genres">
+                  <!-- Les genres sélectionnés seront affichés ici -->
+              </div>
+              <button class="boutongenre" type="button" onclick="addGenre()">+</button>
+          </div>
+          <button class="ajouter">Ajouter</button>
       </form>
       <table class="table-dark table-hover">
           <thead>
@@ -90,6 +113,23 @@
     </div>
   </div>
 </div>
+
+<script>
+  function addGenre() {
+    var select = document.createElement("select");
+    select.name = "categories[]";
+    select.required = true;
+    select.innerHTML = `
+      <?php foreach ($genres as $genre) { ?>
+        <option value="<?= $genre->getLibelle() ?>"><?= $genre->getLibelle() ?></option>
+      <?php } ?>
+    `;
+    
+    var container = document.getElementById("categories-container");
+    container.appendChild(select);
+  }
+</script>
+
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>

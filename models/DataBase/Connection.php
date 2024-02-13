@@ -238,4 +238,13 @@ class Connection
         $artistes = $stmt->fetchAll();
         return $artistes;
     }
+
+    public static function getAllGenres()
+    {
+        $pdo = self::getInstance();
+        $stmt = $pdo->getPDO()->prepare('SELECT * FROM GENRE');
+        $stmt->execute();
+        $genres = $stmt->fetchAll();
+        return $genres;
+    }
 }

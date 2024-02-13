@@ -104,6 +104,15 @@ class Builder
         );
     }
 
+    public static function createGenres(array $genres)
+    {
+        $allGenres = [];
+        foreach ($genres as $genre) {
+            $allGenres[] = Builder::createGenre($genre);
+        }
+        return $allGenres;
+    }
+
     public static function createAllAlbumsFromDatabase(array $albums)
     {
         $allAlbums = [];
