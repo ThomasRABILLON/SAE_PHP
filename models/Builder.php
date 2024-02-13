@@ -79,6 +79,24 @@ class Builder
         );
     }
 
+    public static function createArtistes(array $artistes)
+    {
+        $allArtistes = [];
+        foreach ($artistes as $artiste) {
+            $allArtistes[] = Builder::createArtiste($artiste);
+        }
+        return $allArtistes;
+    }
+
+    public static function createArtitesSuivi(array $artistes)
+    {
+        $allArtistes = [];
+        foreach ($artistes as $artiste) {
+            $allArtistes[] = Builder::createArtiste(Connection::getArtiste($artiste['id_art']));
+        }
+        return $allArtistes;
+    }
+
     public static function createGenre(array $genre)
     {
         return new Genre(
@@ -106,7 +124,7 @@ class Builder
         return $allAlbums;
     }
 
-    public static function createPlaylistFromDatabase(array $playlists)
+    public static function createAllPlaylistFromDatabase(array $playlists)
     {
         $allPlaylists = [];
         foreach ($playlists as $playlist) {
@@ -122,5 +140,19 @@ class Builder
             );
         }
         return $allPlaylists;
+    }
+
+    public static function createPlaylistFromDatabase(array $playlist)
+    {
+        $albums = [];
+        foreach (Connection::getAlbumsFromPlaylist($playlist['id_playlist']) as $album) {
+            $albums[] = Connection::getAlbum($album['id_album']);
+        }
+        return new Playlist(
+            $playlist['id_playlist'],
+            $playlist['nom'],
+            Builder::createUserFromDatabase(Connection::getUser($playlist['email'])),
+            Builder::createAllAlbumsFromDatabase($albums)
+        );
     }
 }

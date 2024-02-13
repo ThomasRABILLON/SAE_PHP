@@ -2,7 +2,7 @@
 
 namespace App\Models\Classe;
 
-class Playlist
+class Playlist implements IRender
 {
     private int $id_playlist;
     private string $nom;
@@ -48,5 +48,18 @@ class Playlist
         if ($key !== false) {
             unset($this->albums[$key]);
         }
+    }
+
+    public function render()
+    {
+        $render = "<div>";
+        $render .= "<h2>" . $this->getNom() . "</h2>";
+        $render .= "<div>";
+        foreach ($this->getAlbums() as $album) {
+            $render .= $album->render();
+        }
+        $render .= "</div>";
+        $render .= "</div>";
+        return $render;
     }
 }

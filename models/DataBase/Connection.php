@@ -174,4 +174,59 @@ class Connection
         $stmt->bindParam(':email', $user->getEmail());
         $stmt->execute();
     }
+
+    public static function supPlaylist($id)
+    {
+        Connection::supAllAlbumsInPlaylist($id);
+        $pdo = self::getInstance();
+        $stmt = $pdo->getPDO()->prepare('DELETE FROM PLAYLIST WHERE id_playlist = :id_playlist');
+        $stmt->bindParam(':id_playlist', $id);
+        $stmt->execute();
+    }
+
+    public static function insertAlbumInPlaylist($id_playlist, $id_album)
+    {
+        $pdo = self::getInstance();
+        $stmt = $pdo->getPDO()->prepare('INSERT INTO EST_DANS (id_playlist, id_album) VALUES (:id_playlist, :id_album)');
+        $stmt->bindParam(':id_playlist', $id_playlist);
+        $stmt->bindParam(':id_album', $id_album);
+        $stmt->execute();
+    }
+
+    public static function supAlbumInPlaylist($id_playlist, $id_album)
+    {
+        $pdo = self::getInstance();
+        $stmt = $pdo->getPDO()->prepare('DELETE FROM EST_DANS WHERE id_playlist = :id_playlist AND id_album = :id_album');
+        $stmt->bindParam(':id_playlist', $id_playlist);
+        $stmt->bindParam(':id_album', $id_album);
+        $stmt->execute();
+    }
+
+    public static function supAllAlbumsInPlaylist($id_playlist)
+    {
+        $pdo = self::getInstance();
+        $stmt = $pdo->getPDO()->prepare('DELETE FROM EST_DANS WHERE id_playlist = :id_playlist');
+        $stmt->bindParam(':id_playlist', $id_playlist);
+        $stmt->execute();
+    }
+
+    public static function getPlaylist($id)
+    {
+        $pdo = self::getInstance();
+        $stmt = $pdo->getPDO()->prepare('SELECT * FROM PLAYLIST WHERE id_playlist = :id_playlist');
+        $stmt->bindParam(':id_playlist', $id);
+        $stmt->execute();
+        $playlist = $stmt->fetch();
+        return $playlist;
+    }
+
+    public static function getArtistesSuivi(Utilisateur $user)
+    {
+        $pdo = self::getInstance();
+        $stmt = $pdo->getPDO()->prepare('SELECT * FROM SUIT WHERE email = :email');
+        $stmt->bindParam(':email', $user->getEmail());
+        $stmt->execute();
+        $artistes = $stmt->fetchAll();
+        return $artistes;
+    }
 }

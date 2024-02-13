@@ -9,6 +9,7 @@ require_once 'controlleurs/connection.php';
 require_once 'controlleurs/profil.php';
 require_once 'controlleurs/insert.php';
 require_once 'controlleurs/playlists.php';
+require_once 'controlleurs/artiste.php';
 
 use App\Models\Autoloader;
 
@@ -43,6 +44,15 @@ switch ($uri) {
         break;
     case '/create_playlist':
         createPlaylist($_POST);
+        break;
+    case '/playlists/sup':
+        supPlaylist($_GET);
+        break;
+    case '/playlist':
+        playlist($_GET['id']);
+        break;
+    case '/artistes/suivi':
+        artistesSuivi();
         break;
     default:
         # code...

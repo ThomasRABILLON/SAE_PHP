@@ -11,7 +11,7 @@ function playlists()
         exit();
     }
     $albums = Builder::createAllAlbumsFromDatabase(Connection::getAlbums());
-    $playlists = Builder::createPlaylistFromDatabase(Connection::getPlaylistUser($_SESSION['user']));
+    $playlists = Builder::createAllPlaylistFromDatabase(Connection::getPlaylistUser($_SESSION['user']));
     require 'templates/playlists.php';
 }
 
@@ -29,4 +29,30 @@ function createPlaylist($post)
     }
     $albums = Builder::createAllAlbumsFromDatabase(Connection::getAlbums());
     require 'templates/create_playlist.php';
+}
+
+function supPlaylist($get)
+{
+    session_start();
+    if (!isset($_SESSION['user'])) {
+        header('Location: /login');
+        exit();
+    }
+    if (isset($get['id'])) {
+        Connection::supPlaylist($get['id']);
+        header('Location: /playlists');
+        exit();
+    }
+}
+
+function playlist($id)
+{
+    session_start();
+    if (!isset($_SESSION['user'])) {
+        header('Location: /login');
+        exit();
+    }
+    $albums = Builder::createAllAlbumsFromDatabase(Connection::getAlbums());
+    $playlist = Builder::createPlaylistFromDatabase(Connection::getPlaylist($id));
+    require 'templates/playlist.php';
 }
