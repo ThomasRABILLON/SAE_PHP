@@ -31,23 +31,8 @@ switch ($uri) {
     case '/insert':
         insert();
         break;
-    case '/register':
-        register($_POST);
-        break;
-    case '/login':
-        login($_POST);
-        break;
-    case '/logout':
-        logout();
-        break;
-    case '/profil':
-        profil($_POST);
-        break;
-    case '/insert':
-        insert();
-        break;
-    case '/librairie':
-        librairie();
+    case '/detail_album':
+        detail_album();
         break;
     default:
         # code...
