@@ -1,5 +1,5 @@
 <?php
-$title = 'Mes playlistes';
+$title = '9h4quarts - Mes playlists';
 ob_start();
 ?>
 

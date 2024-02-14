@@ -1,5 +1,5 @@
 <?php
-$title = "Artistes suivis";
+$title = "9h4quarts - Artistes suivis";
 ob_start();
 ?>
 
