@@ -131,18 +131,7 @@ class Album implements IRender{
 
         $currentAlbum = $_GET['album'];
 
-        // Récupération du nom de l'album depuis l'URL
-        $albumId = isset($_GET['album']) ? $_GET['album'] : '';
-
-        // Vérification si l'album existe
-        //if (array_key_exists($albumId, $albums)) {
-            $currentAlbum = $albums[$albumId];
-
-            // Affichage des informations de l'album
-            echo $_GET['album']->displayDetails();
-        //} else {
-        //    echo '<p>Album non trouvé.</p>';
-        //}
+        echo $_GET['album']->displayDetails();
         ?>
     </div>
 </body>
