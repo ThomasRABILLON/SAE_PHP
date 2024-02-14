@@ -3,12 +3,17 @@ $title = 'Mes playlistes';
 ob_start();
 ?>
 
-<div>
-<?php
-foreach ($playlists as $playlist) {
-    echo "<h2><a href='/playlist?id=". $playlist->getId() ."'>" . $playlist->getNom() . "</a></h2><button onclick='window.location.href=`/playlists/sup?id=". $playlist->getId() ."`'>Suprimer</button>";
-}
-?>
+<div class="playlist">
+    
+<div class="playlist">
+    <?php
+    foreach ($playlists as $playlist) {
+
+        echo "<div class='divplaylist'>";
+        echo "<h2 class='titreplaylist'><a href='/playlist?id=". $playlist->getId() ."'>" . $playlist->getNom() . "</a></h2><button class='bouttonplaylist' onclick='window.location.href=`/playlists/sup?id=". $playlist->getId() ."`'>Supprimer</button>";
+        echo "</div>";
+    }
+    ?>
 </div>
 
 <?php
