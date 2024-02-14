@@ -13,20 +13,32 @@
       <input type="radio" name="css-tabs" id="tab-1" checked class="tab-switch">
       <label for="tab-1" class="tab-label">Albums</label>
       <div class="tab-content">
-      <h1>Ajouter un album</h1>
+      <h1 class="text-light">Ajouter un album</h1>
       <button onclick="window.location.href='/insert'">Depuis Yaml</button>
-      <form action="" method="post" enctype="multipart/form-data">
+      <form action="/createAlbum" method="post" enctype="multipart/form-data">
           <div class="form-group">
-              <label for="image">Image :</label>
-              <input type="file" id="image" name="image" accept="image/*" required>
+              <label class="text-light" for="image">Image :</label>
+              <input type="file" id="image" name="img" accept="image/*" class="text-light" required>
           </div>
           <div class="form-group">
-              <label for="titre">Titre :</label>
-              <input type="text" id="titre" name="titre" required>
+              <label class="text-light" for="titre">Titre :</label>
+              <input type="text" id="titre" name="title" required>
+          </div>
+          <div class="form-group">
+              <label class="text-light" for="date">Date de publication :</label>
+              <input type="date" id="date" name="release_date" required>
+          </div>
+          <div class="form-group">
+            <label class="text-light">Artiste :</label>
+            <select name="id_art" required>
+              <?php foreach ($artistes as $artiste) { ?>
+                <option value="<?= $artiste->getId() ?>"><?= $artiste->getNomDeScene() ?></option>
+              <?php } ?>
+            </select>
           </div>
           <div class="form-group" id="categories-container">
-              <label>Genres :</label>
-              <select name="categories[]" required>
+              <label class="text-light">Genres :</label>
+              <select name="genres[]" required>
                 <?php foreach ($genres as $genre) { ?>
                     <option value="<?= $genre->getLibelle() ?>"><?= $genre->getLibelle() ?></option>
                 <?php } ?>
@@ -52,11 +64,12 @@
           </thead>
           <tbody>
               <?php foreach ($albums as $album) { ?>
-                <form action="/updateAlbum" method="get" id="<?= $album->getId() ?>">
+                <form action="/updateAlbum" method="post" id="<?= $album->getId() ?>">
+                  <input type="hidden" name="id_album" value="<?= $album->getId() ?>">
                   <tr>
                       <td class="text-center pe-3"><?= $album->getId() ?></td>
                       <td class="text-center pe-3"><input type="text" name="" id="update<?= $album->getId() ?>T" value="<?= $album->getTitle() ?>" style="color: white;" disabled></td>
-                      <td class="text-center pe-3"><input type="date" name="" id="update<?= $album->getId() ?>RD" value="<?= $album->getReleaseDate() ?>" style="color: white;" disabled></td>
+                      <td class="text-center pe-3"><?= $album->getReleaseDate() ?></td>
                       <td class="text-center pe-3">
                           <?php 
                               $rend = '| ';
@@ -66,7 +79,7 @@
                               echo $rend;
                           ?>
                       </td>
-                      <td class="text-center"><input type="text" name="" id="update<?= $album->getId() ?>NdS" value="<?= $album->getArtiste()->getNomDeScene() ?>" style="color: white;" disabled></td>
+                      <td class="text-center"><?= $album->getArtiste()->getNomDeScene() ?></td>
                       <td class="text-center">
                         <div class="button-group">
                           <button type="button" class="btn btn-primary" onclick="modifAlbum(<?= $album->getId() ?>)">Modifer</button>
@@ -84,6 +97,22 @@
       <input type="radio" name="css-tabs" id="tab-2" class="tab-switch">
       <label for="tab-2" class="tab-label">Artistes</label>
       <div class="tab-content">
+      <h1 class="text-light">Ajouter un artiste</h1>
+      <form action="/createArtiste" method="post">
+          <div class="form-group text-light">
+              <label for="nomDeScene">Nom de scène :</label>
+              <input type="text" id="nomDeScene" name="nomDeScene" required>
+          </div>
+          <div class="form-group text-light">
+              <label for="nom">Nom :</label>
+              <input type="text" id="nom" name="nom" required>
+          </div>
+          <div class="form-group text-light">
+              <label for="prenom">Prénom :</label>
+              <input type="text" id="prenom" name="prenom" required>
+          </div>
+          <button class="ajouter">Ajouter</button>
+      </form>
         <table class="table-dark table-hover">
           <thead>
             <tr>
@@ -97,8 +126,8 @@
           </thead>
           <tbody>
             <?php foreach ($artistes as $artiste) { ?>
-              <form action="/updateAlbum" method="get" id="<?= $artiste->getId() ?>">
-              <input type="hidden" name="id" value="<?= $artiste->getId() ?>">
+              <form action="/updateArtiste" method="post" id="<?= $artiste->getId() ?>">
+              <input type="hidden" name="id_art" value="<?= $artiste->getId() ?>">
                 <tr>
                   <td class="text-center pe-5"><?= $artiste->getId() ?></td>
                   <td class="text-center pe-5"><input type="text" name="" id="update<?= $artiste->getId() ?>NS" value="<?= $artiste->getNomDeScene() ?>" style="color: white;" disabled></td>
@@ -123,7 +152,7 @@
 <script>
   function addGenre() {
     var select = document.createElement("select");
-    select.name = "categories[]";
+    select.name = "genres[]";
     select.required = true;
     select.innerHTML = `
       <?php foreach ($genres as $genre) { ?>
@@ -175,37 +204,17 @@
 
   function modifAlbum(id) {
     var T = document.getElementById("update" + id + "T");
-    var RD = document.getElementById("update" + id + "RD");
-    var NdS = document.getElementById("update" + id + "NdS");
     if (T.disabled) {
       T.disabled = false;
-      RD.disabled = false;
-      NdS.disabled = false;
       T.style.color = "black";
-      RD.style.color = "black";
-      NdS.style.color = "black";
     } else {
       T.disabled = true;
-      RD.disabled = true;
-      NdS.disabled = true;
       T.style.color = "white";
-      RD.style.color = "white";
-      NdS.style.color = "white";
       var form = document.getElementById(id);
       var input = document.createElement("input");
       input.type = "hidden";
-      input.name = "titre";
+      input.name = "title";
       input.value = T.value;
-      form.appendChild(input);
-      var input = document.createElement("input");
-      input.type = "hidden";
-      input.name = "releaseDate";
-      input.value = RD.value;
-      form.appendChild(input);
-      var input = document.createElement("input");
-      input.type = "hidden";
-      input.name = "nomDeScene";
-      input.value = NdS.value;
       form.appendChild(input);
       form.submit();
     }

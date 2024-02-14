@@ -52,6 +52,16 @@ class Album implements IRender{
         {
             return $this->releaseDate;
         }
+
+        public function setTitle($title)
+        {
+            $this->title = $title;
+        }
+
+        public function setReleaseDate($releaseDate)
+        {
+            $this->releaseDate = $releaseDate;
+        }
         
         /**
         * Permet de récupérer les genres de l'album

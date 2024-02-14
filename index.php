@@ -64,6 +64,18 @@ switch ($uri) {
     case '/admin/supArtiste':
         supArtiste($_GET);
         break;
+    case '/updateAlbum':
+        updateAlbum($_POST);
+        break;
+    case '/updateArtiste':
+        updateArtiste($_POST);
+        break;
+    case '/createAlbum':
+        createAlbum($_POST);
+        break;
+    case '/createArtiste':
+        createArtiste($_POST);
+        break;
     default:
         # code...
         break;

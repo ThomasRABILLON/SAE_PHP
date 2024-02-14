@@ -332,4 +332,33 @@ class Connection
         $stmt->bindParam(':id_art', $artiste->getId());
         $stmt->execute();
     }
+
+    public static function insertAlbum(array $album)
+    {
+        $pdo = self::getInstance();
+        $stmt = $pdo->getPDO()->prepare('INSERT INTO ALBUMS (title, release_date, img, id_art) VALUES (:title, :release_date, :img, :id_art)');
+        $stmt->bindParam(':title', $album['title']);
+        $stmt->bindParam(':release_date', $album['release_date']);
+        $img_path = $album['img'];
+        $stmt->bindParam(':img', $img_path);
+        $stmt->bindParam(':id_art', $album['id_art']);
+        $stmt->execute();
+        $id = $pdo->getPDO()->lastInsertId();
+        foreach ($album['genres'] as $genre) {
+            $stmt = $pdo->getPDO()->prepare('INSERT INTO A_GENRE (id_album, libelle_genre) VALUES (:id_album, :libelle_genre)');
+            $stmt->bindParam(':id_album', $id);
+            $stmt->bindParam(':libelle_genre', $genre);
+            $stmt->execute();
+        }
+    }
+
+    public static function insertArtiste(array $artiste)
+    {
+        $pdo = self::getInstance();
+        $stmt = $pdo->getPDO()->prepare('INSERT INTO ARTISTES (nom_de_scene, nom, prenom) VALUES (:nom_de_scene, :nom, :prenom)');
+        $stmt->bindParam(':nom_de_scene', $artiste['nomDeScene']);
+        $stmt->bindParam(':nom', $artiste['nom']);
+        $stmt->bindParam(':prenom', $artiste['prenom']);
+        $stmt->execute();
+    }
 }

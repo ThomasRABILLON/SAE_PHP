@@ -32,6 +32,11 @@ class Artiste implements IRender
     {
         return $this->nom_de_scene;
     }
+
+    public function setNomDeScene($nom_de_scene)
+    {
+        $this->nom_de_scene = $nom_de_scene;
+    }
     
     /**
      * Permet de récupérer le nom de l'artiste
@@ -41,12 +46,22 @@ class Artiste implements IRender
         return $this->nom;
     }
 
+    public function setNom($nom)
+    {
+        $this->nom = $nom;
+    }
+
     /**
      * Permet de récupérer le prenom de l'artiste
      */
     public function getPrenom()
     {
         return $this->prenom;
+    }
+
+    public function setPrenom($prenom)
+    {
+        $this->prenom = $prenom;
     }
 
     public function render()
