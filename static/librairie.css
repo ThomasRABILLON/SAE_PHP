@@ -9,13 +9,14 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
+    background-color: #303030;
 }
 
 .album-container {
     width: 200px; /* Ajustez la largeur selon vos besoins */
     margin: 20px;
     text-align: center;
-    background-color: #fff;
+    background-color: #555;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -32,13 +33,12 @@ h2 {
     font-size: 1.2em;
 }
 
-p {
-    color: #777;
-    margin: 5px 0;
+.album-container p {
+    color: #999;
 }
 
 button {
-    background-color: #1db954;
+    background-color: #169743;
     color: #fff;
     padding: 8px 15px;
     border: none;
