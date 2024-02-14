@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Albums;
+namespace App\Models\Classe;
 
 interface IRender
 {

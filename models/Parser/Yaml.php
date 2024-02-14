@@ -16,7 +16,18 @@ class Yaml implements IParser
                 $value = str_replace('-', '', $value);
             }
             $val = explode(':', $value);
-            $album[trim($val[0])] = trim($val[1]);
+            $key = trim($val[0]);
+            $val = trim($val[1]);
+            if ($key == 'genre') {
+                $val = str_replace('[', '', $val);
+                $val = str_replace(']', '', $val);
+                $val = str_replace(' ', '', $val);
+                $val = explode(',', $val);
+            }
+            if ($key == 'releaseYear') {
+                $val = date_create_from_format('Y', $val);
+            }
+            $album[$key] = $val;
         }
         array_push($parsed, $album);
         return $parsed;
