@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="./static/admin.css">
-    <title>Admin</title>
+    <title>9h4quarts - Admin</title>
 </head>
 <body>
 <div class="wrapper">

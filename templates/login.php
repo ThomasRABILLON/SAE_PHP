@@ -1,5 +1,5 @@
 <?php
-$title = "Connexion";
+$title = "9h4quarts - Connexion";
 $h1 = "Connexion";
 ob_start();
 ?>

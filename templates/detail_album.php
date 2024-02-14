@@ -1,5 +1,5 @@
 <?php
-$title = "Detail Album";
+$title = "9h4quarts - Album : " . $album->getTitle();
 ob_start();
 session_start();
 ?>
