@@ -20,10 +20,10 @@ $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
 switch ($uri) {
     case '/':
-        home();
+        home($_GET);
         break;
     case '/home':
-        home();
+        home($_GET);
         break;
     case '/register':
         register($_POST);
