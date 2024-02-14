@@ -88,22 +88,7 @@ class Album implements IRender{
             $rend .= '<img src="' . str_replace('%', '%25', $this->getImg()) . '" alt="' . $this->getTitle() . '">';
             $rend .= '<h2>' . $this->getTitle() . '</h2>';
             $rend .= '<p>' . $this->getArtiste()->getNomDeScene() . '</p>';
-            $rend .= '<button onclick=`window.location.href="/details_album.php"`>Voir plus</button>';
-            $rend .= '</div>';
-            return $rend;
-        }
-
-        /**
-         * Renvoie un affichage html détaillé de l'album
-         */
-        public function displayDetails()
-        {
-            $rend = '<div class="album-details">';
-            $rend .= '<img src="' . $this->getImg() . '" alt="' . $this->getTitle() . '">';
-            $rend .= '<h2>' . $this->getTitle() . '</h2>';
-            $rend .= '<p>Date de sortie: ' . $this->getReleaseDate() . '</p>';
-            $rend .= '<p>Genres: ' . implode(', ', $this->getGenres()) . '</p>';
-            $rend .= '<p>Artiste: ' . $this->getArtiste() . '</p>';
+            $rend .= '<button onclick="window.location.href=`/detail_album?id_album='. $this->getId() .'`">Voir plus</button>';
             $rend .= '</div>';
             return $rend;
         }

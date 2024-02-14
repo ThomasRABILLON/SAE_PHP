@@ -11,6 +11,7 @@ require_once 'controlleurs/insert.php';
 require_once 'controlleurs/playlists.php';
 require_once 'controlleurs/artiste.php';
 require_once 'controlleurs/admin.php';
+require_once 'controlleurs/detail_album.php';
 
 use App\Models\Autoloader;
 
@@ -41,7 +42,8 @@ switch ($uri) {
         insert();
         break;
     case '/detail_album':
-        detail_album();
+        detailAlbum($_GET);
+        break;
     case '/playlists':
         playlists();
         break;
