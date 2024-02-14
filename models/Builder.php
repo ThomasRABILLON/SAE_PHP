@@ -104,6 +104,31 @@ class Builder
         );
     }
 
+    public static function createGenres(array $genres)
+    {
+        $allGenres = [];
+        foreach ($genres as $genre) {
+            $allGenres[] = Builder::createGenre($genre);
+        }
+        return $allGenres;
+    }
+
+    public static function createAlbum(array $album)
+    {
+        $genres = [];
+        foreach (Connection::getAllGenresAlbum($album['id_album']) as $genre) {
+            $genres[] = Builder::createGenre($genre);
+        }
+        return new Album(
+            $album['id_album'],
+            $album['title'],
+            date_create($album['release_date']),
+            $album['img'],
+            $genres,
+            Builder::createArtiste(Connection::getArtiste($album['id_art']))
+        );
+    }
+
     public static function createAllAlbumsFromDatabase(array $albums)
     {
         $allAlbums = [];

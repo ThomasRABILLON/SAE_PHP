@@ -10,6 +10,7 @@ require_once 'controlleurs/profil.php';
 require_once 'controlleurs/insert.php';
 require_once 'controlleurs/playlists.php';
 require_once 'controlleurs/artiste.php';
+require_once 'controlleurs/admin.php';
 
 use App\Models\Autoloader;
 
@@ -19,10 +20,10 @@ $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
 switch ($uri) {
     case '/':
-        home();
+        home($_GET);
         break;
     case '/home':
-        home();
+        home($_GET);
         break;
     case '/register':
         register($_POST);
@@ -68,6 +69,27 @@ switch ($uri) {
         break;
     case '/artiste_suivi/add':
         artisteSuiviAdd($_GET);
+        break;
+    case '/admin':
+        admin($_GET);
+        break;
+    case '/admin/supAlbum':
+        supAlbum($_GET);
+        break;
+    case '/admin/supArtiste':
+        supArtiste($_GET);
+        break;
+    case '/updateAlbum':
+        updateAlbum($_POST);
+        break;
+    case '/updateArtiste':
+        updateArtiste($_POST);
+        break;
+    case '/createAlbum':
+        createAlbum($_POST);
+        break;
+    case '/createArtiste':
+        createArtiste($_POST);
         break;
     default:
         # code...
