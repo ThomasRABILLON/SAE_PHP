@@ -56,7 +56,13 @@ switch ($uri) {
         artistesSuivi();
         break;
     case '/admin':
-        admin();
+        admin($_GET);
+        break;
+    case '/admin/supAlbum':
+        supAlbum($_GET);
+        break;
+    case '/admin/supArtiste':
+        supArtiste($_GET);
         break;
     default:
         # code...

@@ -14,7 +14,8 @@
       <label for="tab-1" class="tab-label">Albums</label>
       <div class="tab-content">
       <h1>Ajouter un album</h1>
-      <form action="traitement.php" method="post" enctype="multipart/form-data">
+      <button onclick="window.location.href='/insert'">Depuis Yaml</button>
+      <form action="" method="post" enctype="multipart/form-data">
           <div class="form-group">
               <label for="image">Image :</label>
               <input type="file" id="image" name="image" accept="image/*" required>
@@ -51,10 +52,11 @@
           </thead>
           <tbody>
               <?php foreach ($albums as $album) { ?>
+                <form action="/updateAlbum" method="get" id="<?= $album->getId() ?>">
                   <tr>
                       <td class="text-center pe-3"><?= $album->getId() ?></td>
-                      <td class="text-center pe-3"><?= $album->getTitle() ?></td>
-                      <td class="text-center pe-3"><?= $album->getReleaseDate() ?></td>
+                      <td class="text-center pe-3"><input type="text" name="" id="update<?= $album->getId() ?>T" value="<?= $album->getTitle() ?>" style="color: white;" disabled></td>
+                      <td class="text-center pe-3"><input type="date" name="" id="update<?= $album->getId() ?>RD" value="<?= $album->getReleaseDate() ?>" style="color: white;" disabled></td>
                       <td class="text-center pe-3">
                           <?php 
                               $rend = '| ';
@@ -64,14 +66,15 @@
                               echo $rend;
                           ?>
                       </td>
-                      <td class="text-center"><?= $album->getArtiste()->getNomDeScene() ?></td>
+                      <td class="text-center"><input type="text" name="" id="update<?= $album->getId() ?>NdS" value="<?= $album->getArtiste()->getNomDeScene() ?>" style="color: white;" disabled></td>
                       <td class="text-center">
                         <div class="button-group">
-                          <button type="button" class="btn btn-primary">Modifer</button>
-                          <button type="button" class="btn btn-danger">Supprimer</button>
+                          <button type="button" class="btn btn-primary" onclick="modifAlbum(<?= $album->getId() ?>)">Modifer</button>
+                          <button type="button" class="btn btn-danger" onclick="window.location.href='/admin/supAlbum?id=<?= $album->getId() ?>'">Supprimer</button>
                         </div>
                       </td>
                   </tr>
+                </form>
               <?php } ?>
           </tbody>
       </table>
@@ -94,18 +97,21 @@
           </thead>
           <tbody>
             <?php foreach ($artistes as $artiste) { ?>
+              <form action="/updateAlbum" method="get" id="<?= $artiste->getId() ?>">
+              <input type="hidden" name="id" value="<?= $artiste->getId() ?>">
                 <tr>
                   <td class="text-center pe-5"><?= $artiste->getId() ?></td>
-                  <td class="text-center pe-5"><?= $artiste->getNomDeScene() ?></td>
-                  <td class="text-center pe-5"><?= $artiste->getNom() ?></td>
-                  <td class="text-center pe-5"><?= $artiste->getPrenom() ?></td>
+                  <td class="text-center pe-5"><input type="text" name="" id="update<?= $artiste->getId() ?>NS" value="<?= $artiste->getNomDeScene() ?>" style="color: white;" disabled></td>
+                  <td class="text-center pe-5"><input type="text" name="" id="update<?= $artiste->getId() ?>N" value="<?= $artiste->getNom() ?>" style="color: white;" disabled></td>
+                  <td class="text-center pe-5"><input type="text" name="" id="update<?= $artiste->getId() ?>P" value="<?= $artiste->getPrenom() ?>" style="color: white;" disabled></td>
                   <td class="text-center">
                     <div class="button-group">
-                      <button type="button" class="btn btn-primary">Modifer</button>
-                      <button type="button" class="btn btn-danger">Supprimer</button>
+                      <button type="button" class="btn btn-primary" onclick="modifArtiste(<?= $artiste->getId() ?>)">Modifer</button>
+                      <button type="button" class="btn btn-danger" onclick="window.location.href='/admin/supArtiste?id=<?= $artiste->getId() ?>'">Supprimer</button>
                     </div>
                   </td>
                 </tr>
+              </form>
             <?php } ?>
           </tbody>
         </table>
@@ -127,6 +133,82 @@
     
     var container = document.getElementById("categories-container");
     container.appendChild(select);
+  }
+
+  function modifArtiste(id) {
+    var NS = document.getElementById("update" + id + "NS");
+    var N = document.getElementById("update" + id + "N");
+    var P = document.getElementById("update" + id + "P");
+    if (NS.disabled) {
+      NS.disabled = false;
+      N.disabled = false;
+      P.disabled = false;
+      NS.style.color = "black";
+      N.style.color = "black";
+      P.style.color = "black";
+    } else {
+      NS.disabled = true;
+      N.disabled = true;
+      P.disabled = true;
+      NS.style.color = "white";
+      N.style.color = "white";
+      P.style.color = "white";
+      var form = document.getElementById(id);
+      var input = document.createElement("input");
+      input.type = "hidden";
+      input.name = "nomDeScene";
+      input.value = NS.value;
+      form.appendChild(input);
+      var input = document.createElement("input");
+      input.type = "hidden";
+      input.name = "nom";
+      input.value = N.value;
+      form.appendChild(input);
+      var input = document.createElement("input");
+      input.type = "hidden";
+      input.name = "prenom";
+      input.value = P.value;
+      form.appendChild(input);
+      form.submit();
+    }
+  }
+
+  function modifAlbum(id) {
+    var T = document.getElementById("update" + id + "T");
+    var RD = document.getElementById("update" + id + "RD");
+    var NdS = document.getElementById("update" + id + "NdS");
+    if (T.disabled) {
+      T.disabled = false;
+      RD.disabled = false;
+      NdS.disabled = false;
+      T.style.color = "black";
+      RD.style.color = "black";
+      NdS.style.color = "black";
+    } else {
+      T.disabled = true;
+      RD.disabled = true;
+      NdS.disabled = true;
+      T.style.color = "white";
+      RD.style.color = "white";
+      NdS.style.color = "white";
+      var form = document.getElementById(id);
+      var input = document.createElement("input");
+      input.type = "hidden";
+      input.name = "titre";
+      input.value = T.value;
+      form.appendChild(input);
+      var input = document.createElement("input");
+      input.type = "hidden";
+      input.name = "releaseDate";
+      input.value = RD.value;
+      form.appendChild(input);
+      var input = document.createElement("input");
+      input.type = "hidden";
+      input.name = "nomDeScene";
+      input.value = NdS.value;
+      form.appendChild(input);
+      form.submit();
+    }
   }
 </script>
 
