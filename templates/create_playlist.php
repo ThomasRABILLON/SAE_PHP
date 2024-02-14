@@ -1,5 +1,5 @@
 <?php
-$title = 'Créer une playlist';
+$title = '9h4quarts - Créer une playlist';
 ob_start();
 ?>
 

@@ -1,5 +1,5 @@
 <?php
-$title = "Librairie";
+$title = "9h4quarts - Accueil";
 ob_start();
 ?>
 <link rel="stylesheet" href="./static/librairie.css">
