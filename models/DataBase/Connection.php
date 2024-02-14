@@ -288,24 +288,6 @@ class Connection
         return $genres;
     }
 
-    public static function insertArtisteSuivi($id_art, Utilisateur $user)
-    {
-        $pdo = self::getInstance();
-        $stmt = $pdo->getPDO()->prepare('INSERT INTO SUIT (id_art, email) VALUES (:id_art, :email)');
-        $stmt->bindParam(':id_art', $id_art);
-        $stmt->bindParam(':email', $user->getEmail());
-        $stmt->execute();
-    }
-
-    public static function supArtisteSuivi($id_art, Utilisateur $user)
-    {
-        $pdo = self::getInstance();
-        $stmt = $pdo->getPDO()->prepare('DELETE FROM SUIT WHERE id_art = :id_art AND email = :email');
-        $stmt->bindParam(':id_art', $id_art);
-        $stmt->bindParam(':email', $user->getEmail());
-        $stmt->execute();
-    }
-
     public static function supAlbum($id)
     {
         Connection::supAGenre($id);
