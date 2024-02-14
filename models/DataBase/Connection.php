@@ -240,4 +240,136 @@ class Connection
         $albums = $stmt->fetchAll();
         return $albums;
     }
+
+    public static function getArtistes()
+    {
+        $pdo = self::getInstance();
+        $stmt = $pdo->getPDO()->prepare('SELECT * FROM ARTISTES');
+        $stmt->execute();
+        $artistes = $stmt->fetchAll();
+        return $artistes;
+    }
+
+    public static function getAllGenres()
+    {
+        $pdo = self::getInstance();
+        $stmt = $pdo->getPDO()->prepare('SELECT * FROM GENRE');
+        $stmt->execute();
+        $genres = $stmt->fetchAll();
+        return $genres;
+    }
+
+    public static function insertArtisteSuivi($id_art, Utilisateur $user)
+    {
+        $pdo = self::getInstance();
+        $stmt = $pdo->getPDO()->prepare('INSERT INTO SUIT (id_art, email) VALUES (:id_art, :email)');
+        $stmt->bindParam(':id_art', $id_art);
+        $stmt->bindParam(':email', $user->getEmail());
+        $stmt->execute();
+    }
+
+    public static function supArtisteSuivi($id_art, Utilisateur $user)
+    {
+        $pdo = self::getInstance();
+        $stmt = $pdo->getPDO()->prepare('DELETE FROM SUIT WHERE id_art = :id_art AND email = :email');
+        $stmt->bindParam(':id_art', $id_art);
+        $stmt->bindParam(':email', $user->getEmail());
+        $stmt->execute();
+    }
+
+    public static function supAlbum($id)
+    {
+        Connection::supAGenre($id);
+        $pdo = self::getInstance();
+        $stmt = $pdo->getPDO()->prepare('DELETE FROM ALBUMS WHERE id_album = :id_album');
+        $stmt->bindParam(':id_album', $id);
+        $stmt->execute();
+    }
+
+    public static function supAGenre($id)
+    {
+        $pdo = self::getInstance();
+        $stmt = $pdo->getPDO()->prepare('DELETE FROM A_GENRE WHERE id_album = :id_album');
+        $stmt->bindParam(':id_album', $id);
+        $stmt->execute();
+    }
+
+    public static function supArtiste($id)
+    {
+        Connection::supAlbumsArtiste($id);
+        Connection::supSuit($id);
+        $pdo = self::getInstance();
+        $stmt = $pdo->getPDO()->prepare('DELETE FROM ARTISTES WHERE id_art = :id_art');
+        $stmt->bindParam(':id_art', $id);
+        $stmt->execute();
+    }
+
+    public static function supSuit($id)
+    {
+        $pdo = self::getInstance();
+        $stmt = $pdo->getPDO()->prepare('DELETE FROM SUIT WHERE id_art = :id_art');
+        $stmt->bindParam(':id_art', $id);
+        $stmt->execute();
+    }
+
+    public static function supAlbumsArtiste($id)
+    {
+        $pdo = self::getInstance();
+        $stmt = $pdo->getPDO()->prepare('DELETE FROM ALBUMS WHERE id_art = :id_art');
+        $stmt->bindParam(':id_art', $id);
+        $stmt->execute();
+    }
+
+    public static function updateAlbum($album)
+    {
+        $pdo = self::getInstance();
+        $stmt = $pdo->getPDO()->prepare('UPDATE ALBUMS SET title = :title, release_date = :release_date, img = :img, id_art = :id_art WHERE id_album = :id_album');
+        $stmt->bindParam(':title', $album->getTitle());
+        $stmt->bindParam(':release_date', date_format($album->getReleaseDate(), 'Y-m-d'));
+        $img_path = "./images/" . $album->getImg();
+        $stmt->bindParam(':img', $img_path);
+        $stmt->bindParam(':id_art', $album->getArtiste()->getId());
+        $stmt->bindParam(':id_album', $album->getId());
+        $stmt->execute();
+    }
+
+    public static function updateArtiste($artiste)
+    {
+        $pdo = self::getInstance();
+        $stmt = $pdo->getPDO()->prepare('UPDATE ARTISTES SET nom_de_scene = :nom_de_scene, nom = :nom, prenom = :prenom WHERE id_art = :id_art');
+        $stmt->bindParam(':nom_de_scene', $artiste->getNomDeScene());
+        $stmt->bindParam(':nom', $artiste->getNom());
+        $stmt->bindParam(':prenom', $artiste->getPrenom());
+        $stmt->bindParam(':id_art', $artiste->getId());
+        $stmt->execute();
+    }
+
+    public static function insertAlbum(array $album)
+    {
+        $pdo = self::getInstance();
+        $stmt = $pdo->getPDO()->prepare('INSERT INTO ALBUMS (title, release_date, img, id_art) VALUES (:title, :release_date, :img, :id_art)');
+        $stmt->bindParam(':title', $album['title']);
+        $stmt->bindParam(':release_date', $album['release_date']);
+        $img_path = $album['img'];
+        $stmt->bindParam(':img', $img_path);
+        $stmt->bindParam(':id_art', $album['id_art']);
+        $stmt->execute();
+        $id = $pdo->getPDO()->lastInsertId();
+        foreach ($album['genres'] as $genre) {
+            $stmt = $pdo->getPDO()->prepare('INSERT INTO A_GENRE (id_album, libelle_genre) VALUES (:id_album, :libelle_genre)');
+            $stmt->bindParam(':id_album', $id);
+            $stmt->bindParam(':libelle_genre', $genre);
+            $stmt->execute();
+        }
+    }
+
+    public static function insertArtiste(array $artiste)
+    {
+        $pdo = self::getInstance();
+        $stmt = $pdo->getPDO()->prepare('INSERT INTO ARTISTES (nom_de_scene, nom, prenom) VALUES (:nom_de_scene, :nom, :prenom)');
+        $stmt->bindParam(':nom_de_scene', $artiste['nomDeScene']);
+        $stmt->bindParam(':nom', $artiste['nom']);
+        $stmt->bindParam(':prenom', $artiste['prenom']);
+        $stmt->execute();
+    }
 }
