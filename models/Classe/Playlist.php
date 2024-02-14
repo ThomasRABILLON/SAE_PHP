@@ -57,6 +57,7 @@ class Playlist implements IRender
         $render .= "<div>";
         foreach ($this->getAlbums() as $album) {
             $render .= $album->render();
+            $render .= "<button onclick='window.location.href=`/playlist/sup?id_playlist=". $this->getId() ."&id_album=". $album->getId() ."`'>Supprimer</button>";
         }
         $render .= "</div>";
         $render .= "</div>";

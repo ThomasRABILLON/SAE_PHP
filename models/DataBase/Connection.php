@@ -184,6 +184,17 @@ class Connection
         $stmt->execute();
     }
 
+    public static function getAlbumInPlaylist($id_playlist, $id_album)
+    {
+        $pdo = self::getInstance();
+        $stmt = $pdo->getPDO()->prepare('SELECT * FROM EST_DANS WHERE id_playlist = :id_playlist AND id_album = :id_album');
+        $stmt->bindParam(':id_playlist', $id_playlist);
+        $stmt->bindParam(':id_album', $id_album);
+        $stmt->execute();
+        $album = $stmt->fetch();
+        return $album;
+    }
+
     public static function insertAlbumInPlaylist($id_playlist, $id_album)
     {
         $pdo = self::getInstance();
@@ -228,6 +239,24 @@ class Connection
         $stmt->execute();
         $artistes = $stmt->fetchAll();
         return $artistes;
+    }
+
+    public static function insertArtisteSuivi(Utilisateur $user, $id_art)
+    {
+        $pdo = self::getInstance();
+        $stmt = $pdo->getPDO()->prepare('INSERT INTO SUIT (email, id_art) VALUES (:email, :id_art)');
+        $stmt->bindParam(':email', $user->getEmail());
+        $stmt->bindParam(':id_art', $id_art);
+        $stmt->execute();
+    }
+
+    public static function supArtisteSuivi(Utilisateur $user, $id_art)
+    {
+        $pdo = self::getInstance();
+        $stmt = $pdo->getPDO()->prepare('DELETE FROM SUIT WHERE email = :email AND id_art = :id_art');
+        $stmt->bindParam(':email', $user->getEmail());
+        $stmt->bindParam(':id_art', $id_art);
+        $stmt->execute();
     }
 
     public static function searchAlbums($recherche)
