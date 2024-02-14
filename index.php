@@ -2,6 +2,15 @@
 
 require_once 'models/Autoloader.php';
 require_once 'controlleurs/home.php';
+require_once 'controlleurs/connection.php';
+require_once 'controlleurs/profil.php';
+require_once 'controlleurs/insert.php';
+require_once 'controlleurs/connection.php';
+require_once 'controlleurs/profil.php';
+require_once 'controlleurs/insert.php';
+require_once 'controlleurs/playlists.php';
+require_once 'controlleurs/artiste.php';
+require_once 'controlleurs/admin.php';
 
 use App\Models\Autoloader;
 
@@ -11,10 +20,10 @@ $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
 switch ($uri) {
     case '/':
-        home();
+        home($_GET);
         break;
     case '/home':
-        home();
+        home($_GET);
         break;
     case '/register':
         register($_POST);
@@ -33,6 +42,56 @@ switch ($uri) {
         break;
     case '/detail_album':
         detail_album();
+    case '/playlists':
+        playlists();
+        break;
+    case '/create_playlist':
+        createPlaylist($_POST);
+        break;
+    case '/playlists/sup':
+        supPlaylist($_GET);
+        break;
+    case '/playlist':
+        playlist($_GET['id']);
+        break;
+    case '/suivi':
+        artistesSuivi();
+        break;
+    case '/playlist/add':
+        playlistAddAlbum($_GET);
+        break;
+    case '/playlist/sup':
+        playlistSupAlbum($_GET);
+        break;
+    case '/artiste_suivi':
+        artistesSuivi();
+        break;
+    case '/artiste_suivi/sup':
+        artisteSuiviSup($_GET);
+        break;
+    case '/artiste_suivi/add':
+        artisteSuiviAdd($_GET);
+        break;
+    case '/admin':
+        admin($_GET);
+        break;
+    case '/admin/supAlbum':
+        supAlbum($_GET);
+        break;
+    case '/admin/supArtiste':
+        supArtiste($_GET);
+        break;
+    case '/updateAlbum':
+        updateAlbum($_POST);
+        break;
+    case '/updateArtiste':
+        updateArtiste($_POST);
+        break;
+    case '/createAlbum':
+        createAlbum($_POST);
+        break;
+    case '/createArtiste':
+        createArtiste($_POST);
         break;
     default:
         # code...

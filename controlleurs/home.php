@@ -4,14 +4,20 @@ use App\Models\Builder;
 use App\Models\Parser\Yaml;
 use App\Models\DataBase\Connection;
 
-function home()
+function home($get)
 {
+    session_start();
+    if (!isset($_SESSION['user'])) {
+        header('Location: /login');
+        exit();
+    }
+    if (isset($get['recherche'])) {
+        $albums = Builder::createAllAlbumsFromDatabase(Connection::searchAlbums($get['recherche']));
+        require 'templates/home.php';
+        return;
+    } else {
+        $albums = Builder::createAllAlbumsFromDatabase(Connection::getAlbums());
+    }
     // $albums = Builder::buildFromJson(Yaml::parse('data/yml/extrait.yml'))['albums'];
-    $albums = Builder::createAllAlbumsFromDatabase(Connection::getAlbums());
-    require 'templates/librairie.php';
-}
-
-function librairie(){
-    $albums = Builder::build(Yaml::parse('data/extrait.yml'));
-    require 'templates/librairie.php';
+    require 'templates/home.php';
 }
