@@ -71,7 +71,7 @@ class Album implements IRender{
 
         public function render()
         {
-            $rend = '<div class="album-container">';
+            $rend = '<div class="album-container" id="album-container">';
             $rend .= '<img src="' . $this->getImg() . '" alt="' . $this->getTitle() . '">';
             $rend .= '<h2>' . $this->getTitle() . '</h2>';
             $rend .= '<p>' . $this->getArtiste()->getNomDeScene() . '</p>';

@@ -56,3 +56,35 @@ function playlist($id)
     $playlist = Builder::createPlaylistFromDatabase(Connection::getPlaylist($id));
     require 'templates/playlist.php';
 }
+
+function playlistAddAlbum($get)
+{
+    session_start();
+    if (!isset($_SESSION['user'])) {
+        header('Location: /login');
+        exit();
+    }
+    echo "a";
+    var_dump($get);
+    if (isset($get['id_playlist']) && isset($get['id_album'])) {
+        Connection::insertAlbumInPlaylist($get['id_playlist'], $get['id_album']);
+        header('Location: /playlist?id=' . $get['id_playlist']);
+        exit();
+    }
+}
+
+function playlistSupAlbum($get)
+{
+    session_start();
+    if (!isset($_SESSION['user'])) {
+        header('Location: /login');
+        exit();
+    }
+    if (isset($get['id_playlist']) && isset($get['id_album'])) {
+        if (Connection::getAlbumInPlaylist($get['id_playlist'], $get['id_album'])) {
+            Connection::supAlbumInPlaylist($get['id_playlist'], $get['id_album']);
+        }
+        header('Location: /playlist?id=' . $get['id_playlist']);
+        exit();
+    }
+}

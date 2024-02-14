@@ -54,6 +54,21 @@ switch ($uri) {
     case '/suivi':
         artistesSuivi();
         break;
+    case '/playlist/add':
+        playlistAddAlbum($_GET);
+        break;
+    case '/playlist/sup':
+        playlistSupAlbum($_GET);
+        break;
+    case '/artiste_suivi':
+        artistesSuivi();
+        break;
+    case '/artiste_suivi/sup':
+        artisteSuiviSup($_GET);
+        break;
+    case '/artiste_suivi/add':
+        artisteSuiviAdd($_GET);
+        break;
     default:
         # code...
         break;
