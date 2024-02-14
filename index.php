@@ -40,6 +40,8 @@ switch ($uri) {
     case '/insert':
         insert();
         break;
+    case '/detail_album':
+        detail_album();
     case '/playlists':
         playlists();
         break;
