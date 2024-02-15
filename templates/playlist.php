@@ -1,5 +1,5 @@
 <?php
-$title = "Playliste : " . $playlist->getNom();
+$title = "9h4quarts - Playlist : " . $playlist->getNom();
 ob_start();
 ?>
 

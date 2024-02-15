@@ -79,13 +79,16 @@ class Album implements IRender{
             return $this->img;
         }
 
+        /**
+         * Renvoie un affichage html simple de l'album
+         */
         public function render()
         {
-            $rend = '<div class="album-container">';
+            $rend = '<div class="album-container" id="album-container">';
             $rend .= '<img src="' . str_replace('%', '%25', $this->getImg()) . '" alt="' . $this->getTitle() . '">';
             $rend .= '<h2>' . $this->getTitle() . '</h2>';
             $rend .= '<p>' . $this->getArtiste()->getNomDeScene() . '</p>';
-            $rend .= '<button>Voir plus</button>';
+            $rend .= '<button onclick="window.location.href=`/detail_album?id_album='. $this->getId() .'`">Voir plus</button>';
             $rend .= '</div>';
             return $rend;
         }

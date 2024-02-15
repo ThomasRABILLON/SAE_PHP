@@ -26,6 +26,15 @@ h1 {
   font-size: 5em;
 }
 
+.soustitreregister,
+h2 {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  color: white;
+  text-align: center;
+  font-size: 3em;
+}
+
 .labelRegister {
   color: white;
 }

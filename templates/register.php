@@ -1,12 +1,12 @@
 <?php
-$title = "Register";
+$title = "9h4quarts - Register";
 ob_start();
 ?>
 
-    <h1 class="titreregister">9h4quart</h1>
+    <h1 class="titreregister">9h4quarts</h1>
+    <h2 class="soustitreregister">Inscription</h2>
     <div class="container">
         <div class="form-container">
-            <h1><?php echo $h1; ?></h1>
             <form action="/register" method="post">
                 <div class="form-group">
                     <label class="labelRegister" for="email">Email</label>

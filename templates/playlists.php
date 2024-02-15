@@ -1,10 +1,7 @@
 <?php
-$title = 'Mes playlistes';
+$title = '9h4quarts - Mes playlists';
 ob_start();
 ?>
-
-<div class="playlist">
-    
 <div class="playlist">
     <?php
     foreach ($playlists as $playlist) {
