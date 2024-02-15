@@ -9,6 +9,7 @@ aside {
   position: sticky;
   top: 0;
   z-index: 1000;
+  max-height: 100vh;
   min-height: 100vh; /* Assurez-vous que l'aside prend toute la hauteur de la fenêtre */
 }
 
@@ -60,4 +61,20 @@ li {
 
 .white-text {
   color: white;
+}
+
+.sectionAside {
+  border-top: 1px solid white;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.boutton_aside {
+  margin-top: 1em;
+  width: 5em;
+  height: auto;
+  margin-left: 4em;
 }
