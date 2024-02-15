@@ -38,3 +38,16 @@ function artisteSuiviAdd($get)
     header('Location: /suivi');
     exit();
 }
+
+function artiste($get) 
+{
+    session_start();
+    if (!isset($_SESSION['user'])) {
+        header('Location: /login');
+        exit();
+    }
+    $isFollowed = Connection::isArtisteSuivi($_SESSION['user'], $get['id_art']);
+    $artiste = Builder::createArtiste(Connection::getArtiste($get['id_art']));
+    $albums = Builder::createAllAlbumsFromDatabase(Connection::getAlbumsArtiste($get['id_art']));
+    require 'templates/artiste.php';
+}

@@ -383,4 +383,25 @@ class Connection
         $stmt->bindParam(':prenom', $artiste['prenom']);
         $stmt->execute();
     }
+
+    public static function getAlbumsArtiste($id)
+    {
+        $pdo = self::getInstance();
+        $stmt = $pdo->getPDO()->prepare('SELECT * FROM ALBUMS WHERE id_art = :id_art');
+        $stmt->bindParam(':id_art', $id);
+        $stmt->execute();
+        $albums = $stmt->fetchAll();
+        return $albums;
+    }
+
+    public static function isArtisteSuivi(Utilisateur $user, $id_art)
+    {
+        $pdo = self::getInstance();
+        $stmt = $pdo->getPDO()->prepare('SELECT * FROM SUIT WHERE email = :email AND id_art = :id_art');
+        $stmt->bindParam(':email', $user->getEmail());
+        $stmt->bindParam(':id_art', $id_art);
+        $stmt->execute();
+        $artiste = $stmt->fetch();
+        return $artiste;
+    }
 }
