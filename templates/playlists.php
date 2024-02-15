@@ -2,17 +2,15 @@
 $title = '9h4quarts - Mes playlists';
 ob_start();
 ?>
+<div class="playlist">
+    <?php
+    foreach ($playlists as $playlist) {
 
-<div>
-<?php
-echo "<h1>Playlistes</h1>";
-if (empty($playlists)) {
-    echo "<h2>Vous n'avez pas de playliste</h2>";
-}
-foreach ($playlists as $playlist) {
-    echo "<h2><a href='/playlist?id=". $playlist->getId() ."'>" . $playlist->getNom() . "</a></h2><button onclick='window.location.href=`/playlists/sup?id=". $playlist->getId() ."`'>Suprimer</button>";
-}
-?>
+        echo "<div class='divplaylist'>";
+        echo "<h2 class='titreplaylist'><a href='/playlist?id=". $playlist->getId() ."'>" . $playlist->getNom() . "</a></h2><button class='bouttonplaylist' onclick='window.location.href=`/playlists/sup?id=". $playlist->getId() ."`'>Supprimer</button>";
+        echo "</div>";
+    }
+    ?>
 </div>
 
 <?php
