@@ -9,7 +9,7 @@ aside {
   position: sticky;
   top: 0;
   z-index: 1000;
-  height: 100%; /* Assurez-vous que l'aside prend toute la hauteur de la fenêtre */
+  min-height: 100vh; /* Assurez-vous que l'aside prend toute la hauteur de la fenêtre */
 }
 
 main {
@@ -38,13 +38,13 @@ li {
 
 .image_nav {
   height: 2.5em;
-  margin-right: 3em;
+  margin-right: 2.5em;
   margin-left: 0.6em;
 }
 
 .image_add {
   height: 4em;
-  margin-right: 0.6em;
+  margin-right: 2em;
   margin-left: 0%;
 }
 .image_librairie {

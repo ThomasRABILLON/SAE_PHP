@@ -7,6 +7,7 @@ use App\Models\Classe\Artiste;
 use App\Models\Classe\Genre;
 use App\Models\Classe\Utilisateur;
 use App\Models\Database\Connection;
+use App\Models\Classe\Playlist;
 
 class Builder
 {
@@ -71,17 +72,60 @@ class Builder
     public static function createArtiste(array $artiste)
     {
         return new Artiste(
-            $artiste['id'],
+            $artiste['id_art'],
             $artiste['nom_de_scene'],
             $artiste['nom'],
             $artiste['prenom']
         );
     }
 
+    public static function createArtistes(array $artistes)
+    {
+        $allArtistes = [];
+        foreach ($artistes as $artiste) {
+            $allArtistes[] = Builder::createArtiste($artiste);
+        }
+        return $allArtistes;
+    }
+
+    public static function createArtitesSuivi(array $artistes)
+    {
+        $allArtistes = [];
+        foreach ($artistes as $artiste) {
+            $allArtistes[] = Builder::createArtiste(Connection::getArtiste($artiste['id_art']));
+        }
+        return $allArtistes;
+    }
+
     public static function createGenre(array $genre)
     {
         return new Genre(
             $genre['libelle_genre']
+        );
+    }
+
+    public static function createGenres(array $genres)
+    {
+        $allGenres = [];
+        foreach ($genres as $genre) {
+            $allGenres[] = Builder::createGenre($genre);
+        }
+        return $allGenres;
+    }
+
+    public static function createAlbum(array $album)
+    {
+        $genres = [];
+        foreach (Connection::getAllGenresAlbum($album['id_album']) as $genre) {
+            $genres[] = Builder::createGenre($genre);
+        }
+        return new Album(
+            $album['id_album'],
+            $album['title'],
+            date_create($album['release_date']),
+            $album['img'],
+            $genres,
+            Builder::createArtiste(Connection::getArtiste($album['id_art']))
         );
     }
 
@@ -103,5 +147,37 @@ class Builder
             );
         }
         return $allAlbums;
+    }
+
+    public static function createAllPlaylistFromDatabase(array $playlists)
+    {
+        $allPlaylists = [];
+        foreach ($playlists as $playlist) {
+            $albums = [];
+            foreach (Connection::getAlbumsFromPlaylist($playlist['id_playlist']) as $album) {
+                $albums[] = Connection::getAlbum($album['id_album']);
+            }
+            $allPlaylists[] = new Playlist(
+                $playlist['id_playlist'],
+                $playlist['nom'],
+                Builder::createUserFromDatabase(Connection::getUser($playlist['email'])),
+                Builder::createAllAlbumsFromDatabase($albums)
+            );
+        }
+        return $allPlaylists;
+    }
+
+    public static function createPlaylistFromDatabase(array $playlist)
+    {
+        $albums = [];
+        foreach (Connection::getAlbumsFromPlaylist($playlist['id_playlist']) as $album) {
+            $albums[] = Connection::getAlbum($album['id_album']);
+        }
+        return new Playlist(
+            $playlist['id_playlist'],
+            $playlist['nom'],
+            Builder::createUserFromDatabase(Connection::getUser($playlist['email'])),
+            Builder::createAllAlbumsFromDatabase($albums)
+        );
     }
 }

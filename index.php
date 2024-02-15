@@ -8,6 +8,10 @@ require_once 'controlleurs/insert.php';
 require_once 'controlleurs/connection.php';
 require_once 'controlleurs/profil.php';
 require_once 'controlleurs/insert.php';
+require_once 'controlleurs/playlists.php';
+require_once 'controlleurs/artiste.php';
+require_once 'controlleurs/admin.php';
+require_once 'controlleurs/detail_album.php';
 
 use App\Models\Autoloader;
 
@@ -17,10 +21,10 @@ $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
 switch ($uri) {
     case '/':
-        home();
+        home($_GET);
         break;
     case '/home':
-        home();
+        home($_GET);
         break;
     case '/register':
         register($_POST);
@@ -37,23 +41,62 @@ switch ($uri) {
     case '/insert':
         insert();
         break;
-    case '/register':
-        register($_POST);
+    case '/detail_album':
+        detailAlbum($_GET);
         break;
-    case '/login':
-        login($_POST);
+    case '/playlists':
+        playlists();
         break;
-    case '/logout':
-        logout();
+    case '/create_playlist':
+        createPlaylist($_POST);
         break;
-    case '/profil':
-        profil($_POST);
+    case '/playlists/sup':
+        supPlaylist($_GET);
         break;
-    case '/insert':
-        insert();
+    case '/playlist':
+        playlist($_GET['id']);
         break;
-    case '/librairie':
-        librairie();
+    case '/suivi':
+        artistesSuivi();
+        break;
+    case '/playlist/add':
+        playlistAddAlbum($_GET);
+        break;
+    case '/playlist/sup':
+        playlistSupAlbum($_GET);
+        break;
+    case '/artiste_suivi':
+        artistesSuivi();
+        break;
+    case '/artiste_suivi/sup':
+        artisteSuiviSup($_GET);
+        break;
+    case '/artiste_suivi/add':
+        artisteSuiviAdd($_GET);
+        break;
+    case '/admin':
+        admin($_GET);
+        break;
+    case '/admin/supAlbum':
+        supAlbum($_GET);
+        break;
+    case '/admin/supArtiste':
+        supArtiste($_GET);
+        break;
+    case '/updateAlbum':
+        updateAlbum($_POST);
+        break;
+    case '/updateArtiste':
+        updateArtiste($_POST);
+        break;
+    case '/createAlbum':
+        createAlbum($_POST);
+        break;
+    case '/createArtiste':
+        createArtiste($_POST);
+        break;
+    case '/artiste':
+        artiste($_GET);
         break;
     default:
         # code...

@@ -1,8 +1,8 @@
 body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
+  font-family: "Arial", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
 }
 
 .albums-wrapper {
@@ -24,14 +24,14 @@ body {
 }
 
 .album-container img {
-    width: 100%;
-    border-radius: 4px;
+  width: 100%;
+  border-radius: 4px;
 }
 
 h2 {
-    margin-top: 10px;
-    margin-bottom: 5px;
-    font-size: 1.2em;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  font-size: 1.2em;
 }
 
 .album-container p {
