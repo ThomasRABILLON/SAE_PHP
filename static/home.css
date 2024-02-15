@@ -77,4 +77,5 @@ li {
   width: 5em;
   height: auto;
   margin-left: 4em;
+  cursor: pointer;
 }
