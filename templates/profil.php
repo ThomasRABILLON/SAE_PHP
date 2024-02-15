@@ -11,19 +11,19 @@ ob_start();
             <p>Vous pouvez modifier vos informations personnelles ci-dessous :</p>
             <form action="/profil" method="post">
                 <div class="form-group row">
-                    <label class="labelprofil" for="nom" class="col-sm-2 col-form-label">Nom</label>
-                    <input type="text" class="form-control" id="nom" name="nom" value="<?= $_SESSION['user']->getNom() ?>">
+                    <label class="labelRegister" for="nom" class="col-sm-2 col-form-label">Nom</label>
+                    <input class="inputRegister" type="text" class="form-control" id="nom" name="nom" value="<?= $_SESSION['user']->getNom() ?>">
                 </div>
                 <div class="form-group row">
-                    <label class="labelprofil" for="prenom" class="col-sm-2 col-form-label">Prénom</label>
-                    <input type="text" class="form-control" id="prenom" name="prenom" value="<?= $_SESSION['user']->getPrenom() ?>">
+                    <label class="labelRegister" for="prenom" class="col-sm-2 col-form-label">Prénom</label>
+                    <input class="inputRegister" type="text" class="form-control" id="prenom" name="prenom" value="<?= $_SESSION['user']->getPrenom() ?>">
                 </div>
                 <div class="form-group row">
-                    <label class="labelprofil" for="dateNaissance" class="col-sm-2 col-form-label">Date de naissance</label>
-                    <input type="date" class="form-control" id="dateNaissance" name="dateNaissance" value="<?= date_format($_SESSION['user']->getDateNaissance(), 'Y-m-d') ?>">
+                    <label class="labelRegister" for="dateNaissance" class="col-sm-2 col-form-label">Date de naissance</label>
+                    <input class="inputRegister" type="date" class="form-control" id="dateNaissance" name="dateNaissance" value="<?= date_format($_SESSION['user']->getDateNaissance(), 'Y-m-d') ?>">
                 </div>
-                <button id="modif" type="button" class="btn btn-primary">Modifier</button>
-                <a id="lienregister" href="/logout" class="btn btn-danger">Se déconnecter</a>
+                <button id="modif" type="button" class="btn btn-primary labelRegister">Modifier</button>
+                <a id="lienregister" href="/logout" class="lienprofile">Se déconnecter</a>
             </form>
         </div>
     </div>
