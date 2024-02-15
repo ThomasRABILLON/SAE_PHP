@@ -15,9 +15,15 @@ function home($get)
         $albums = Builder::createAllAlbumsFromDatabase(Connection::searchAlbums($get['recherche']));
         require 'templates/home.php';
         return;
+    } else if (isset($get['genre']) && $get['genre'] != 'all') {
+        $albums = Builder::createAllAlbumsFromDatabase(Connection::getAlbumsFromGenre($get['genre']));
+    } else if (isset($get['artiste']) && $get['artiste'] != 'all') {
+        $albums = Builder::createAllAlbumsFromDatabase(Connection::getAlbumsArtiste($get['artiste']));
     } else {
         $albums = Builder::createAllAlbumsFromDatabase(Connection::getAlbums());
     }
+    $genres = Builder::createGenres(Connection::getAllGenres());
+    $artistes = Builder::createArtistes(Connection::getArtistes());
     // $albums = Builder::buildFromJson(Yaml::parse('data/yml/extrait.yml'))['albums'];
     require 'templates/home.php';
 }
