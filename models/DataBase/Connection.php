@@ -414,4 +414,23 @@ class Connection
         $albums = $stmt->fetchAll();
         return $albums;
     }
+
+    public static function getAlbumsFromYear($year)
+    {
+        $pdo = self::getInstance();
+        $stmt = $pdo->getPDO()->prepare('SELECT * FROM ALBUMS WHERE strftime("%Y", release_date) = :release_date');
+        $stmt->bindParam(':release_date', $year);
+        $stmt->execute();
+        $albums = $stmt->fetchAll();
+        return $albums;
+    }
+
+    public static function getAnnees()
+    {
+        $pdo = self::getInstance();
+        $stmt = $pdo->getPDO()->prepare('SELECT DISTINCT strftime("%Y", release_date) as year FROM ALBUMS');
+        $stmt->execute();
+        $annees = $stmt->fetchAll();
+        return $annees;
+    }
 }
