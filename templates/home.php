@@ -28,6 +28,16 @@ ob_start();
             echo "<option value='{$artiste->getId()}'>{$artiste->getNom()}</option>";
         } ?>
     </select>
+    <select name="annee" id="annee">
+        <option value="all">Toutes les années</option>
+        <?php foreach ($annees as $annee) {
+            if (isset($_GET['annee']) && $_GET['annee'] == $annee['year']) {
+                echo "<option value='{$annee['year']}' selected>{$annee['year']}</option>";
+                continue;
+            }
+            echo "<option value='{$annee['year']}'>{$annee['year']}</option>";
+        } ?>
+    </select>
 </div>
 <div class="albums-wrapper">
     <?php foreach ($albums as $album) {
@@ -44,6 +54,11 @@ ob_start();
     document.getElementById('artiste').addEventListener('change', function () {
         const artiste = this.value;
         window.location.href = `/home?artiste=${artiste}`;
+    });
+
+    document.getElementById('annee').addEventListener('change', function () {
+        const annee = this.value;
+        window.location.href = `/home?annee=${annee}`;
     });
 </script>
 
