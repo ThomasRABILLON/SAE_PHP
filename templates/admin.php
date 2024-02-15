@@ -14,31 +14,31 @@
       <label for="tab-1" class="tab-label">Albums</label>
       <div class="tab-content">
       <h1 class="text-light">Ajouter un album</h1>
-      <button onclick="window.location.href='/insert'">Depuis Yaml</button>
-      <form action="/createAlbum" method="post" enctype="multipart/form-data">
-          <div class="form-group">
-              <label class="text-light" for="image">Image :</label>
-              <input type="file" id="image" name="img" accept="image/*" class="text-light" required>
+      <button onclick="window.location.href='/insert'" class="btn btn-primary">Depuis Yaml</button>
+      <form action="/createAlbum" method="post" enctype="multipart/form-data" class="m-3 w-25">
+          <div class="input-group mb-3">
+              <label class="input-group-text" for="image">Image</label>
+              <input type="file" id="image" name="img" accept="image/*" class="form-control" required>
           </div>
-          <div class="form-group">
-              <label class="text-light" for="titre">Titre :</label>
-              <input type="text" id="titre" name="title" required>
+          <div class="form-group mb-3">
+              <label class="text-light form-label" for="titre">Titre :</label>
+              <input type="text" id="titre" name="title" class="form-control" required>
           </div>
-          <div class="form-group">
-              <label class="text-light" for="date">Date de publication :</label>
-              <input type="date" id="date" name="release_date" required>
+          <div class="form-group mb-3">
+              <label class="text-light form-label" for="date">Date de publication :</label>
+              <input type="date" id="date" name="release_date" class="form-control" required>
           </div>
-          <div class="form-group">
-            <label class="text-light">Artiste :</label>
-            <select name="id_art" required>
+          <div class="form-group mb-3">
+            <label class="text-light form-label">Artiste :</label>
+            <select name="id_art" class="form-select" required>
               <?php foreach ($artistes as $artiste) { ?>
                 <option value="<?= $artiste->getId() ?>"><?= $artiste->getNomDeScene() ?></option>
               <?php } ?>
             </select>
           </div>
-          <div class="form-group" id="categories-container">
-              <label class="text-light">Genres :</label>
-              <select name="genres[]" required>
+          <div class="form-group mb-3" id="categories-container">
+              <label class="text-light form-label">Genres :</label>
+              <select name="genres[]" class="form-select mb-2"  required>
                 <?php foreach ($genres as $genre) { ?>
                     <option value="<?= $genre->getLibelle() ?>"><?= $genre->getLibelle() ?></option>
                 <?php } ?>
@@ -46,9 +46,9 @@
               <div id="selected-genres">
                   <!-- Les genres sélectionnés seront affichés ici -->
               </div>
-              <button class="boutongenre" type="button" onclick="addGenre()">+</button>
+              <button class="btn btn-primary" type="button" onclick="addGenre()">+</button>
           </div>
-          <button class="ajouter">Ajouter</button>
+          <button class="btn btn-success">Ajouter</button>
       </form>
       <table class="table-dark table-hover">
           <thead>
@@ -98,20 +98,20 @@
       <label for="tab-2" class="tab-label">Artistes</label>
       <div class="tab-content">
       <h1 class="text-light">Ajouter un artiste</h1>
-      <form action="/createArtiste" method="post">
-          <div class="form-group text-light">
-              <label for="nomDeScene">Nom de scène :</label>
-              <input type="text" id="nomDeScene" name="nomDeScene" required>
+      <form action="/createArtiste" method="post" class="m-3 w-25">
+          <div class="form-group text-light mb-3">
+              <label for="nomDeScene" class="form-label">Nom de scène :</label>
+              <input type="text" id="nomDeScene" name="nomDeScene" class="form-control" required>
           </div>
-          <div class="form-group text-light">
-              <label for="nom">Nom :</label>
-              <input type="text" id="nom" name="nom" required>
+          <div class="form-group text-light mb-3">
+              <label for="nom" class="form-label">Nom :</label>
+              <input type="text" id="nom" name="nom" class="form-control" required>
           </div>
-          <div class="form-group text-light">
-              <label for="prenom">Prénom :</label>
-              <input type="text" id="prenom" name="prenom" required>
+          <div class="form-group text-light mb-3">
+              <label for="prenom" class="form-label">Prénom :</label>
+              <input type="text" id="prenom" name="prenom" class="form-control" required>
           </div>
-          <button class="ajouter">Ajouter</button>
+          <button class="btn btn-success">Ajouter</button>
       </form>
         <table class="table-dark table-hover">
           <thead>
@@ -154,13 +154,14 @@
     var select = document.createElement("select");
     select.name = "genres[]";
     select.required = true;
+    select.className = "form-select mb-2";
     select.innerHTML = `
       <?php foreach ($genres as $genre) { ?>
         <option value="<?= $genre->getLibelle() ?>"><?= $genre->getLibelle() ?></option>
       <?php } ?>
     `;
     
-    var container = document.getElementById("categories-container");
+    var container = document.getElementById("selected-genres");
     container.appendChild(select);
   }
 
