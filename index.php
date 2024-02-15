@@ -95,6 +95,9 @@ switch ($uri) {
     case '/createArtiste':
         createArtiste($_POST);
         break;
+    case '/artiste':
+        artiste($_GET);
+        break;
     default:
         # code...
         break;

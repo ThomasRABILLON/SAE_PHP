@@ -87,7 +87,7 @@ class Album implements IRender{
             $rend = '<div class="album-container" id="album-container">';
             $rend .= '<img src="' . str_replace('%', '%25', $this->getImg()) . '" alt="' . $this->getTitle() . '">';
             $rend .= '<h2>' . $this->getTitle() . '</h2>';
-            $rend .= '<p>' . $this->getArtiste()->getNomDeScene() . '</p>';
+            $rend .= '<p><a href="/artiste?id_art='. $this->getArtiste()->getId() .'">' . $this->getArtiste()->getNomDeScene() . '</a></p>';
             $rend .= '<button onclick="window.location.href=`/detail_album?id_album='. $this->getId() .'`">Voir plus</button>';
             $rend .= '</div>';
             return $rend;

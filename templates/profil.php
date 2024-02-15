@@ -40,5 +40,5 @@ ob_start();
 
 <?php
 $content = ob_get_clean();
-require 'connectBaseLayout.php';
+require 'baseLayout.php';
 ?>
