@@ -56,8 +56,10 @@ button:hover {
 .chercher_album {
     padding: 20px;
     background-color: #303030;
+    display: flex;
+    justify-content: space-evenly;
 }
 
-.chercher_album>input {
-    margin: 10px;
+.chercher_album button{
+    margin-left: 2em;
 }

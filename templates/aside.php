@@ -1,4 +1,3 @@
-
 <aside>
     <section>
         <nav>
@@ -11,7 +10,7 @@
         </nav>
     </section>
     <section class="sectionAside">
-        <a  onclick="window.location.href='/login'"><img class="boutton_aside" src="./static/image/profile.png" alt=""></a>
-        <a  onclick="window.location.href='/login'"><img class="boutton_aside" src="./static/image/deconexion.png" alt=""></a>
+        <a  onclick="window.location.href='/profil'"><img class="boutton_aside" src="./static/image/profile.png" alt=""></a>
+        <a  onclick="window.location.href='/logout'"><img class="boutton_aside" src="./static/image/deconexion.png" alt=""></a>
     </section>
 </aside>
