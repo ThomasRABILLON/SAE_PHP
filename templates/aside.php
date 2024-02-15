@@ -10,10 +10,8 @@
             </ul>
         </nav>
     </section>
-    <section>
-        <h2 class="Titre_aside">Greatest song of 2024</h2>
-        <?php foreach ($albums as $album) {
-            echo "<li class='white-text'>" . $album->getTitle() . "</li>";
-        } ?>
+    <section class="sectionAside">
+        <a  onclick="window.location.href='/login'"><img class="boutton_aside" src="./static/image/profile.png" alt=""></a>
+        <a  onclick="window.location.href='/login'"><img class="boutton_aside" src="./static/image/deconexion.png" alt=""></a>
     </section>
 </aside>
