@@ -404,4 +404,14 @@ class Connection
         $artiste = $stmt->fetch();
         return $artiste;
     }
+
+    public static function getAlbumsFromGenre($genre)
+    {
+        $pdo = self::getInstance();
+        $stmt = $pdo->getPDO()->prepare('SELECT * FROM A_GENRE NATURAL JOIN ALBUMS WHERE libelle_genre = :libelle_genre');
+        $stmt->bindParam(':libelle_genre', $genre);
+        $stmt->execute();
+        $albums = $stmt->fetchAll();
+        return $albums;
+    }
 }
