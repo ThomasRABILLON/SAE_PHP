@@ -1,8 +1,8 @@
 body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
+  font-family: "Arial", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
 }
 
 .albums-wrapper {
@@ -13,7 +13,8 @@ body {
 }
 
 .album-container {
-    width: 200px; /* Ajustez la largeur selon vos besoins */
+    width: 200px;
+    /* Ajustez la largeur selon vos besoins */
     margin: 20px;
     text-align: center;
     background-color: #777;
@@ -23,14 +24,14 @@ body {
 }
 
 .album-container img {
-    width: 100%;
-    border-radius: 4px;
+  width: 100%;
+  border-radius: 4px;
 }
 
 h2 {
-    margin-top: 10px;
-    margin-bottom: 5px;
-    font-size: 1.2em;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  font-size: 1.2em;
 }
 
 .album-container p {
@@ -50,4 +51,15 @@ button {
 
 button:hover {
     background-color: #137a34;
+}
+
+.chercher_album {
+    padding: 20px;
+    background-color: #303030;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.chercher_album button{
+    margin-left: 2em;
 }

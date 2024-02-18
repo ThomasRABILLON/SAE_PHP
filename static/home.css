@@ -9,12 +9,15 @@ aside {
   position: sticky;
   top: 0;
   z-index: 1000;
-  height: 100%; /* Assurez-vous que l'aside prend toute la hauteur de la fenêtre */
+  max-height: 100vh;
+  min-height: 100vh; /* Assurez-vous que l'aside prend toute la hauteur de la fenêtre */
 }
 
 main {
   order: 1; /* Change the order to 1 to move it to the left */
   flex: 1; /* Take the remaining space */
+  background-color: #303030;
+  color: white;
 }
 
 li {
@@ -38,13 +41,13 @@ li {
 
 .image_nav {
   height: 2.5em;
-  margin-right: 3em;
+  margin-right: 2.5em;
   margin-left: 0.6em;
 }
 
 .image_add {
   height: 4em;
-  margin-right: 0.6em;
+  margin-right: 2em;
   margin-left: 0%;
 }
 .image_librairie {
@@ -59,5 +62,51 @@ li {
 }
 
 .white-text {
+  color: white;
+}
+
+.sectionAside {
+  border-top: 1px solid white;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.boutton_aside {
+  margin-top: 1em;
+  width: 5em;
+  height: auto;
+  margin-left: 4em;
+  cursor: pointer;
+}
+
+.labelRegister {
+  color: white;
+}
+
+.inputRegister {
+  background-color: black;
+  color: white;
+  font-family: inherit;
+  width: 100%;
+  height: 2em;
+  border-radius: 10px;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #303030;
+  margin-left: 10em;
+}
+
+.form-group {
+  margin-bottom: 1.5em;
+}
+
+.lienprofile {
+  text-decoration: none;
   color: white;
 }

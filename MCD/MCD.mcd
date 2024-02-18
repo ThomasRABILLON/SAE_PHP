@@ -1,14 +1,14 @@
-UTILISATEURS: id_user, nom, prenom, date_naissance, mdp
-A_PLAYLIST, 0N UTILISATEURS, 11 PLAYLIST
-PLAYLIST: id_playlist, nom
-EST_DANS, 0N PLAYLIST, 0N ALBUMS
-
+GENRE: libelle_genre
+FAIT_PAR, 0N ARTISTES, 11 ALBUMS
+ARTISTES: id_art [INTEGER], nom_de_scene, nom, prenom
 SUIT, 0N ARTISTES, 0N UTILISATEURS
-ARTISTES: id_art, nom_de_scene, nom, prenom
-FAIT_PAR, 0N ALBUMS, 11 ARTISTES
-ALBUMS: id_album [NUMBER], title, release_date [DATE], img [BLOB]
+
+A_GENRE, 0N ALBUMS, 0N GENRE
+ALBUMS: id_album [INTEGER], title, release_date [DATE], img
+NOTES, 0N UTILISATEURS, 0N ALBUMS: note [INTEGER]
+UTILISATEURS: email, nom, prenom, date_naissance, mdp
 
 :
-:
-GENRE: id_genre, libelle
-A_GENRE, 1N ALBUMS, 0N GENRE
+EST_DANS, 0N PLAYLIST, 0N ALBUMS
+PLAYLIST: id_playlist [INTEGER], nom
+APPARTIENT, 11 PLAYLIST, 0N UTILISATEURS

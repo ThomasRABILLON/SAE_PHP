@@ -52,6 +52,16 @@ class Album implements IRender{
         {
             return $this->releaseDate;
         }
+
+        public function setTitle($title)
+        {
+            $this->title = $title;
+        }
+
+        public function setReleaseDate($releaseDate)
+        {
+            $this->releaseDate = $releaseDate;
+        }
         
         /**
         * Permet de récupérer les genres de l'album
@@ -69,13 +79,16 @@ class Album implements IRender{
             return $this->img;
         }
 
+        /**
+         * Renvoie un affichage html simple de l'album
+         */
         public function render()
         {
-            $rend = '<div class="album-container">';
-            $rend .= '<img src="' . $this->getImg() . '" alt="' . $this->getTitle() . '">';
+            $rend = '<div class="album-container" id="album-container">';
+            $rend .= '<img src="' . str_replace('%', '%25', $this->getImg()) . '" alt="' . $this->getTitle() . '">';
             $rend .= '<h2>' . $this->getTitle() . '</h2>';
-            $rend .= '<p>' . $this->getArtiste()->getNomDeScene() . '</p>';
-            $rend .= '<button>Voir plus</button>';
+            $rend .= '<p><a href="/artiste?id_art='. $this->getArtiste()->getId() .'">' . $this->getArtiste()->getNomDeScene() . '</a></p>';
+            $rend .= '<button onclick="window.location.href=`/detail_album?id_album='. $this->getId() .'`">Voir plus</button>';
             $rend .= '</div>';
             return $rend;
         }
