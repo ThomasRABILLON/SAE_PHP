@@ -2,6 +2,10 @@
 
 namespace App\Models\Parser;
 
+
+/**
+ * Classe Yaml, permet de parser des données à partir d'un fichier yaml
+ */
 class Yaml implements IParser
 {
     public static function parse(string $path): array

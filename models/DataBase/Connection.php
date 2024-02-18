@@ -7,6 +7,10 @@ use PDO;
 use App\Models\Builder;
 use App\Models\Parser\Yaml;
 
+
+/**
+ * Classe Connection, permet de se connecter à la base de données et d'effectuer les requêtes necessaires aux différentes fonctionnalités
+ */
 class Connection
 {
     public static $instance = null;

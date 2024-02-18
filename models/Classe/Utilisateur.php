@@ -2,6 +2,10 @@
 
 namespace App\Models\Classe;
 
+
+/**
+ * Classe Utilisateur, permet de représenter un utilisateur
+ */
 class Utilisateur
 {
     private $email;

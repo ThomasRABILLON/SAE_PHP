@@ -2,6 +2,10 @@
 
 namespace App\Models\Classe;
 
+
+/**
+ * Classe Playlist, permet de représenter une playlist
+ */
 class Playlist implements IRender
 {
     private int $id_playlist;

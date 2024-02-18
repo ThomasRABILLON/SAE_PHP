@@ -2,6 +2,10 @@
 
 namespace App\Models\Classe;
 
+
+/**
+ * Classe Artiste, permet de créer des objets artiste
+ */
 class Artiste implements IRender
 {
     private $id_art;

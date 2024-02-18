@@ -9,6 +9,10 @@ use App\Models\Classe\Utilisateur;
 use App\Models\Database\Connection;
 use App\Models\Classe\Playlist;
 
+
+/**
+ * Classe Builder, permet de construire des objets à partir de données brutes
+ */
 class Builder
 {
     public static function buildFromJson($parsed)

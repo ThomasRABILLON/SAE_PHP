@@ -2,6 +2,10 @@
 
 namespace App\Models\Classe;
 
+
+/**
+ * Classe Album, permet de représenter un album
+ */
 class Album implements IRender{
     
         private $id_album;

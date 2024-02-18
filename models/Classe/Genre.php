@@ -2,6 +2,10 @@
 
 namespace App\Models\Classe;
 
+
+/**
+ * Classe Genre, permet de créer des objets genre
+ */
 class Genre
 {
     private $libelle;
