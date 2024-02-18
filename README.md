@@ -36,3 +36,11 @@ Notre projet ne contient aucune dépendance, ainsi pour le lancer il suffit just
 ```bash
 php -S localhost:5000
 ```
+
+## MCD
+
+<img src="./MCD/MCD.svg">
+
+## Diagramme de classe
+
+<img src="./diagramme_de_classe.png">
