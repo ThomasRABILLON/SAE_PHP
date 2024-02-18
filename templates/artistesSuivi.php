@@ -9,7 +9,7 @@ if (count($artistes) == 0) {
     echo "<h2>Vous ne suivez aucun artiste</h2>";
 } else {
     foreach ($artistes as $artiste) {
-        echo "<p>" . $artiste->getNomDeScene() . "</p>";
+        echo "<p><a href='/artiste?id_art=". $artiste->getId() ."'>" . $artiste->getNomDeScene() . "</a></p>";
         echo "<button onclick='window.location.href=`/artiste_suivi/sup?id_art=". $artiste->getId() ."`'>Ne plus suivre</button>";
     }
 }
