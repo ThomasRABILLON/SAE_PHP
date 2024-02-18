@@ -9,8 +9,8 @@ session_start();
     <p>Prénom & nom: <?= $artiste->getPrenom() ?> <?= $artiste->getNom() ?></p>
     <p>Albums:</p>
     <ul>
-    <?php foreach ($albums as $arlbum) { ?>
-        <li><?= $arlbum->getTitle() ?></li>
+    <?php foreach ($albums as $album) { ?>
+        <li><a href="/detail_album?id_album=<?= $album->getId() ?>"><?= $album->getTitle() ?></a></li>
     <?php } ?>
     </ul>
     <?php if (!$isFollowed) { ?>

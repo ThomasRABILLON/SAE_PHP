@@ -259,17 +259,6 @@ class Connection
         $stmt->execute();
     }
 
-    public static function searchAlbums($recherche)
-    {
-        $pdo = self::getInstance();
-        $stmt = $pdo->getPDO()->prepare('SELECT * FROM ALBUMS WHERE title LIKE :recherche');
-        $search = '%' . $recherche . '%';
-        $stmt->bindParam(':recherche', $search);
-        $stmt->execute();
-        $albums = $stmt->fetchAll();
-        return $albums;
-    }
-
     public static function getArtistes()
     {
         $pdo = self::getInstance();
@@ -432,5 +421,39 @@ class Connection
         $stmt->execute();
         $annees = $stmt->fetchAll();
         return $annees;
+    }
+
+    public static function searchAlbums($recherche, $genre, $artiste, $annee)
+    {
+        $pdo = self::getInstance();
+        $stmt = $pdo->getPDO()->prepare('SELECT * FROM ALBUMS NATURAL JOIN A_GENRE WHERE title LIKE :recherche AND id_art LIKE :artiste AND strftime("%Y", release_date) = :release_date AND libelle_genre = :libelle_genre');
+        $stmt->bindParam(':recherche', '%' . $recherche . '%');
+        $stmt->bindParam(':libelle_genre', $genre);
+        $stmt->bindParam(':artiste', $artiste);
+        $stmt->bindParam(':release_date', $annee);
+        $stmt->execute();
+        $albums = $stmt->fetchAll();
+        return $albums;
+    }
+
+    public static function getNoteAlbum($id_album, $email)
+    {
+        $pdo = self::getInstance();
+        $stmt = $pdo->getPDO()->prepare('SELECT * FROM NOTES WHERE id_album = :id_album AND email = :email');
+        $stmt->bindParam(':id_album', $id_album);
+        $stmt->bindParam(':email', $email);
+        $stmt->execute();
+        $note = $stmt->fetch();
+        return $note;
+    }
+
+    public static function insertNoteAlbum($id_album, $email, $note)
+    {
+        $pdo = self::getInstance();
+        $stmt = $pdo->getPDO()->prepare('INSERT INTO NOTES (id_album, email, note) VALUES (:id_album, :email, :note)');
+        $stmt->bindParam(':id_album', $id_album);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':note', $note);
+        $stmt->execute();
     }
 }

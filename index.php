@@ -98,6 +98,9 @@ switch ($uri) {
     case '/artiste':
         artiste($_GET);
         break;
+    case '/album/note/add':
+        addNoteAlbum($_GET);
+        break;
     default:
         # code...
         break;
