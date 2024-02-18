@@ -4,6 +4,10 @@ use App\Models\DataBase\Connection;
 
 function insert()
 {
-    Connection::rightFromYaML('data/yml/extrait.yml');
+    try {
+        Connection::rightFromYaML('data/yml/extrait.yml');
+    } catch (\Throwable $th) {
+        header('Location: /admin');
+    }
     header('Location: /admin');
 }
