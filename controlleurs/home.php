@@ -13,8 +13,6 @@ function home($get)
     }
     if (isset($get['recherche'])) {
         $albums = Builder::createAllAlbumsFromDatabase(Connection::searchAlbums($get['recherche']));
-        require 'templates/home.php';
-        return;
     } else if (isset($get['genre']) && $get['genre'] != 'all') {
         $albums = Builder::createAllAlbumsFromDatabase(Connection::getAlbumsFromGenre($get['genre']));
     } else if (isset($get['artiste']) && $get['artiste'] != 'all') {

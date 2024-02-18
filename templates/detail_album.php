@@ -14,7 +14,7 @@ session_start();
         <li><?= $genre->getLibelle() ?></li>
     <?php } ?>
     </ul>
-    <p>Artiste: <?= $album->getArtiste()->getNomDeScene() ?></p>
+    <p>Artiste: <a href="/artiste?id_art=<?= $album->getArtiste()->getId() ?>"><?= $album->getArtiste()->getNomDeScene() ?></a></p>
     <?php if (!empty($playlists))
     { ?>
         <form action="/detail_album" method="get">
@@ -27,12 +27,36 @@ session_start();
             </select>
         </form>
     <?php } ?>
+    <p>Note: <?php if (!$note) { ?>
+        <select name="note" id="note">
+            <option value="">Pas de note</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+    <?php } else {
+        echo $note['note'] . '/5';
+    } ?>
+    </p>
 </div>
 
-<script>
-    document.getElementById('playlist').addEventListener('change', function() {
-        window.location.href = '/playlist/add?id_playlist=' + this.value + '&id_album=<?= $album->getId() ?>';
-    });
+<script defer>
+    let playlists = document.getElementById('playlist');
+    let note = document.getElementById('note');
+    
+    if (playlists) {
+        playlists.addEventListener('change', function() {
+            window.location.href = '/playlist/add?id_playlist=' + this.value + '&id_album=<?= $album->getId() ?>';
+        });
+    }
+
+    if (note) {
+        note.addEventListener('change', function() {
+            window.location.href = '/album/note/add?id_album=<?= $album->getId() ?>&note=' + this.value;
+        });
+    }
 </script>
 
 <?php
